@@ -45,10 +45,15 @@ jobs:
       - name: Debug Deployment Path
         run: echo "DEPLOY_PATH is ${{ env.DEPLOY_PATH }}"
 
+      - name: Build Site
+        run: |
+          # Add your build commands here if needed
+          echo "Build step completed"
+
       - name: Upload Artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: '.'
+          path: '.'  # Ensure this points to the directory where your site is built
 
       - name: Deploy to GitHub Pages
         id: deployment
