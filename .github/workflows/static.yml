@@ -40,6 +40,7 @@ jobs:
             echo "DEPLOY_PATH=prod" >> $GITHUB_ENV
           else
             echo "DEPLOY_PATH=" >> $GITHUB_ENV  # Root for prod
+          fi
 
       - name: Debug Deployment Path
         run: echo "DEPLOY_PATH is ${{ env.DEPLOY_PATH }}"
