@@ -1,0 +1,49 @@
+name: Deploy static content to GitHub Pages
+
+on:
+  push:
+    branches: 
+      - prod  # Production deployment
+      - dev   # Development deployment
+  pull_request:
+    branches:
+      - prod  # PR previews for prod
+      - dev   # PR previews for dev
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Define Deployment Path
+        run: |
+          if [[ "${{ github.event_name }}" == "pull_request" ]]; then
+            echo "DEPLOY_PATH=pr-${{ github.event.number }}" >> $GITHUB_ENV
+          elif [[ "${{ github.ref }}" == "refs/heads/dev" ]]; then
+            echo "DEPLOY_PATH=dev" >> $GITHUB_ENV
+          else
+            echo "DEPLOY_PATH=" >> $GITHUB_ENV  # Root for prod
+          fi
+
+      - name: Upload Artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '.'
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
