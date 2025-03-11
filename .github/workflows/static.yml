@@ -36,9 +36,13 @@ jobs:
             echo "DEPLOY_PATH=pr-${{ github.event.number }}" >> $GITHUB_ENV
           elif [[ "${{ github.ref }}" == "refs/heads/dev" ]]; then
             echo "DEPLOY_PATH=dev" >> $GITHUB_ENV
+          elif [[ "${{ github.ref }}" == "refs/heads/prod" ]]; then
+            echo "DEPLOY_PATH=prod" >> $GITHUB_ENV
           else
             echo "DEPLOY_PATH=" >> $GITHUB_ENV  # Root for prod
-          fi
+
+      - name: Debug Deployment Path
+        run: echo "DEPLOY_PATH is ${{ env.DEPLOY_PATH }}"
 
       - name: Upload Artifact
         uses: actions/upload-pages-artifact@v3
@@ -56,7 +60,7 @@ jobs:
           script: |
             const prNumber = context.payload.pull_request.number;
             const deployPath = process.env.DEPLOY_PATH;
-            const url = `https://<your-github-username>.github.io/<your-repo-name>/${deployPath}`;
+            const url = `https://ilovemyteamprojects.github.io/videdit-landing-page/${deployPath}`;
             github.rest.issues.createComment({
               owner: context.repo.owner,
               repo: context.repo.repo,
