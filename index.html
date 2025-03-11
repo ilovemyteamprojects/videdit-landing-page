@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.8/dist/cdn.min.js"></script>
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <title>Document</title>
+</head>
+<body class="bg-black h-[90dvh]">
+    <div x-data="{}" class="flex gap-3 w-100">
+       <video x-data="{ playing: true  }"
+       x-ref="video"
+       @click="playing = !playing; playing ? $refs.video.play() : $refs.video.pause()"
+       preload="auto"
+       loop
+       autoplay
+       muted
+       playsinline
+       class="border h-1/2">
+    <source src="" type="video/mp4" />
+</video>
+    </div>
+</body>
+</html>
