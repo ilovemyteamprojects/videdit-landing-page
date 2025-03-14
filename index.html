@@ -7,27 +7,898 @@
     <link rel="stylesheet" href="./src/style.css">
     <title>Alpine test</title>
   </head>
-  <body class="flex items-center justify-center min-h-screen bg-white">
-     <main class="flex flex-col bg-slate-800 rounded w-[80dvw] h-[80dvh] shadow-black shadow-2xl">
-        
+  <body x-data="{hue: 0, saturation: 100, lightness: 90, smoothness: 20 }" 
+      @scroll.window="hue = (window.scrollY/smoothness) % 360"
+      :style="'background-color: hsl(' + hue + ', ' + saturation + '%, ' + lightness + '%)'"
+      class="flex flex-col items-center justify-center min-h-screen">
+      <div class="flex flex-col p-3 bg-slate-800 w-sm border rounded-b-lg sticky top-0">
+            <label for="saturation">Saturation <span class="text-red-300 inline-flex justify-center w-10" x-text="saturation"></span></label>
+            <input class="appearance-none accent-red-400 border border-red-400 rounded" type="range" id="saturation" name="saturation" min="0" max="100" x-model="saturation" />
+            <label for="lightness">Lightness <span class="text-red-300 inline-flex justify-center w-10" x-text="lightness"></span></label>
+            <input class="appearance-none accent-red-400 border border-red-400 rounded" type="range" id="lightness" name="lightness" min="0" max="100" x-model="lightness" />
+            <label for="smoothness">Color transition smoothness<span class="text-red-300 inline-flex justify-center w-10" x-text="Math.floor(smoothness)"></span></label>
+            <input class="appearance-none accent-red-400 border border-red-400 rounded" type="range" id="smoothness" name="smoothness" min="0" max="50" step="5" x-model="smoothness" />
+        </div>
+     <section x-data id="cardSection" class="flex flex-col mb-8 bg-slate-800 rounded w-[80dvw] h-[80dvh] shadow-black shadow-2xl">  
         <div id="window-head" class="border-b border-slate-500 px-3 flex items-center">
             <div class="flex gap-1">
                 <div class="w-2 h-2 bg-red-500 rounded-full"></div>
                 <div class="w-2 h-2 bg-yellow-400 rounded-full"></div>
                 <div class="w-2 h-2 bg-green-500 rounded-full"></div>
             </div>
-            <p class="text-white font-mono px-auto m-auto ">hello</p>
+            <p class="text-white font-mono px-auto m-auto " x-text="$t('cardSection.head')"></p>
         </div>
 
-        <div id="window-body" class="flex flex-col justify-center h-full">
-            <div class="m-auto">
-                <h1 class="text-4xl text-white font-mono">Sorry</h1>
-                <p class="text-xl text-white font-mono">this page is under construction yet</p>
-                <p class="text-xl text-white font-mono">please visit us later</p>
+        <div class="flex flex-col justify-center h-full">
+            <div class="m-auto w-2/3">
+                <h1 x-text="$t('cardSection.header')" class="text-4xl text-white font-mono">Sorry</h1>
+                <p x-text="$t('cardSection.par_one')" class="text-xl text-white font-mono"></p>
+                <p x-text="$t('cardSection.par_two')" class="text-xl text-white font-mono"></p>
+                <input @click="$locale($event.target.value)" type="radio" id="en" name="fav_language" value="en">
+                <label for="en">EN</label><br>
+                <input checked @click="$locale($event.target.value)" type="radio" id="ua" name="fav_language" value="ua">
+                <label for="ua">UA</label><br>
             </div>
         </div>
+     </section> 
+     <section x-data id="cardSection" class="flex flex-col mb-8 bg-slate-800 rounded w-[80dvw] h-[80dvh] shadow-black shadow-2xl">  
+        <div id="window-head" class="border-b border-slate-500 px-3 flex items-center">
+            <div class="flex gap-1">
+                <div class="w-2 h-2 bg-red-500 rounded-full"></div>
+                <div class="w-2 h-2 bg-yellow-400 rounded-full"></div>
+                <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+            </div>
+            <p class="text-white font-mono px-auto m-auto " x-text="$t('cardSection.head')"></p>
+        </div>
 
-     </main> 
+        <div class="flex flex-col justify-center h-full">
+            <div class="m-auto w-2/3">
+                <h1 x-text="$t('cardSection.header')" class="text-4xl text-white font-mono">Sorry</h1>
+                <p x-text="$t('cardSection.par_one')" class="text-xl text-white font-mono"></p>
+                <p x-text="$t('cardSection.par_two')" class="text-xl text-white font-mono"></p>
+                <input @click="$locale($event.target.value)" type="radio" id="en" name="fav_language" value="en">
+                <label for="en">EN</label><br>
+                <input checked @click="$locale($event.target.value)" type="radio" id="ua" name="fav_language" value="ua">
+                <label for="ua">UA</label><br>
+            </div>
+        </div>
+     </section> 
+     <section x-data id="cardSection" class="flex flex-col mb-8 bg-slate-800 rounded w-[80dvw] h-[80dvh] shadow-black shadow-2xl">  
+        <div id="window-head" class="border-b border-slate-500 px-3 flex items-center">
+            <div class="flex gap-1">
+                <div class="w-2 h-2 bg-red-500 rounded-full"></div>
+                <div class="w-2 h-2 bg-yellow-400 rounded-full"></div>
+                <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+            </div>
+            <p class="text-white font-mono px-auto m-auto " x-text="$t('cardSection.head')"></p>
+        </div>
+
+        <div class="flex flex-col justify-center h-full">
+            <div class="m-auto w-2/3">
+                <h1 x-text="$t('cardSection.header')" class="text-4xl text-white font-mono">Sorry</h1>
+                <p x-text="$t('cardSection.par_one')" class="text-xl text-white font-mono"></p>
+                <p x-text="$t('cardSection.par_two')" class="text-xl text-white font-mono"></p>
+                <input @click="$locale($event.target.value)" type="radio" id="en" name="fav_language" value="en">
+                <label for="en">EN</label><br>
+                <input checked @click="$locale($event.target.value)" type="radio" id="ua" name="fav_language" value="ua">
+                <label for="ua">UA</label><br>
+            </div>
+        </div>
+     </section> 
+     <section x-data id="cardSection" class="flex flex-col mb-8 bg-slate-800 rounded w-[80dvw] h-[80dvh] shadow-black shadow-2xl">  
+        <div id="window-head" class="border-b border-slate-500 px-3 flex items-center">
+            <div class="flex gap-1">
+                <div class="w-2 h-2 bg-red-500 rounded-full"></div>
+                <div class="w-2 h-2 bg-yellow-400 rounded-full"></div>
+                <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+            </div>
+            <p class="text-white font-mono px-auto m-auto " x-text="$t('cardSection.head')"></p>
+        </div>
+
+        <div class="flex flex-col justify-center h-full">
+            <div class="m-auto w-2/3">
+                <h1 x-text="$t('cardSection.header')" class="text-4xl text-white font-mono">Sorry</h1>
+                <p x-text="$t('cardSection.par_one')" class="text-xl text-white font-mono"></p>
+                <p x-text="$t('cardSection.par_two')" class="text-xl text-white font-mono"></p>
+                <input @click="$locale($event.target.value)" type="radio" id="en" name="fav_language" value="en">
+                <label for="en">EN</label><br>
+                <input checked @click="$locale($event.target.value)" type="radio" id="ua" name="fav_language" value="ua">
+                <label for="ua">UA</label><br>
+            </div>
+        </div>
+     </section> 
+     <section x-data id="cardSection" class="flex flex-col mb-8 bg-slate-800 rounded w-[80dvw] h-[80dvh] shadow-black shadow-2xl">  
+        <div id="window-head" class="border-b border-slate-500 px-3 flex items-center">
+            <div class="flex gap-1">
+                <div class="w-2 h-2 bg-red-500 rounded-full"></div>
+                <div class="w-2 h-2 bg-yellow-400 rounded-full"></div>
+                <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+            </div>
+            <p class="text-white font-mono px-auto m-auto " x-text="$t('cardSection.head')"></p>
+        </div>
+
+        <div class="flex flex-col justify-center h-full">
+            <div class="m-auto w-2/3">
+                <h1 x-text="$t('cardSection.header')" class="text-4xl text-white font-mono">Sorry</h1>
+                <p x-text="$t('cardSection.par_one')" class="text-xl text-white font-mono"></p>
+                <p x-text="$t('cardSection.par_two')" class="text-xl text-white font-mono"></p>
+                <input @click="$locale($event.target.value)" type="radio" id="en" name="fav_language" value="en">
+                <label for="en">EN</label><br>
+                <input checked @click="$locale($event.target.value)" type="radio" id="ua" name="fav_language" value="ua">
+                <label for="ua">UA</label><br>
+            </div>
+        </div>
+     </section> 
+     <section x-data id="cardSection" class="flex flex-col mb-8 bg-slate-800 rounded w-[80dvw] h-[80dvh] shadow-black shadow-2xl">  
+        <div id="window-head" class="border-b border-slate-500 px-3 flex items-center">
+            <div class="flex gap-1">
+                <div class="w-2 h-2 bg-red-500 rounded-full"></div>
+                <div class="w-2 h-2 bg-yellow-400 rounded-full"></div>
+                <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+            </div>
+            <p class="text-white font-mono px-auto m-auto " x-text="$t('cardSection.head')"></p>
+        </div>
+
+        <div class="flex flex-col justify-center h-full">
+            <div class="m-auto w-2/3">
+                <h1 x-text="$t('cardSection.header')" class="text-4xl text-white font-mono">Sorry</h1>
+                <p x-text="$t('cardSection.par_one')" class="text-xl text-white font-mono"></p>
+                <p x-text="$t('cardSection.par_two')" class="text-xl text-white font-mono"></p>
+                <input @click="$locale($event.target.value)" type="radio" id="en" name="fav_language" value="en">
+                <label for="en">EN</label><br>
+                <input checked @click="$locale($event.target.value)" type="radio" id="ua" name="fav_language" value="ua">
+                <label for="ua">UA</label><br>
+            </div>
+        </div>
+     </section> 
+     <section x-data id="cardSection" class="flex flex-col mb-8 bg-slate-800 rounded w-[80dvw] h-[80dvh] shadow-black shadow-2xl">  
+        <div id="window-head" class="border-b border-slate-500 px-3 flex items-center">
+            <div class="flex gap-1">
+                <div class="w-2 h-2 bg-red-500 rounded-full"></div>
+                <div class="w-2 h-2 bg-yellow-400 rounded-full"></div>
+                <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+            </div>
+            <p class="text-white font-mono px-auto m-auto " x-text="$t('cardSection.head')"></p>
+        </div>
+
+        <div class="flex flex-col justify-center h-full">
+            <div class="m-auto w-2/3">
+                <h1 x-text="$t('cardSection.header')" class="text-4xl text-white font-mono">Sorry</h1>
+                <p x-text="$t('cardSection.par_one')" class="text-xl text-white font-mono"></p>
+                <p x-text="$t('cardSection.par_two')" class="text-xl text-white font-mono"></p>
+                <input @click="$locale($event.target.value)" type="radio" id="en" name="fav_language" value="en">
+                <label for="en">EN</label><br>
+                <input checked @click="$locale($event.target.value)" type="radio" id="ua" name="fav_language" value="ua">
+                <label for="ua">UA</label><br>
+            </div>
+        </div>
+     </section> 
+     <section x-data id="cardSection" class="flex flex-col mb-8 bg-slate-800 rounded w-[80dvw] h-[80dvh] shadow-black shadow-2xl">  
+        <div id="window-head" class="border-b border-slate-500 px-3 flex items-center">
+            <div class="flex gap-1">
+                <div class="w-2 h-2 bg-red-500 rounded-full"></div>
+                <div class="w-2 h-2 bg-yellow-400 rounded-full"></div>
+                <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+            </div>
+            <p class="text-white font-mono px-auto m-auto " x-text="$t('cardSection.head')"></p>
+        </div>
+
+        <div class="flex flex-col justify-center h-full">
+            <div class="m-auto w-2/3">
+                <h1 x-text="$t('cardSection.header')" class="text-4xl text-white font-mono">Sorry</h1>
+                <p x-text="$t('cardSection.par_one')" class="text-xl text-white font-mono"></p>
+                <p x-text="$t('cardSection.par_two')" class="text-xl text-white font-mono"></p>
+                <input @click="$locale($event.target.value)" type="radio" id="en" name="fav_language" value="en">
+                <label for="en">EN</label><br>
+                <input checked @click="$locale($event.target.value)" type="radio" id="ua" name="fav_language" value="ua">
+                <label for="ua">UA</label><br>
+            </div>
+        </div>
+     </section> 
+     <section x-data id="cardSection" class="flex flex-col mb-8 bg-slate-800 rounded w-[80dvw] h-[80dvh] shadow-black shadow-2xl">  
+        <div id="window-head" class="border-b border-slate-500 px-3 flex items-center">
+            <div class="flex gap-1">
+                <div class="w-2 h-2 bg-red-500 rounded-full"></div>
+                <div class="w-2 h-2 bg-yellow-400 rounded-full"></div>
+                <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+            </div>
+            <p class="text-white font-mono px-auto m-auto " x-text="$t('cardSection.head')"></p>
+        </div>
+
+        <div class="flex flex-col justify-center h-full">
+            <div class="m-auto w-2/3">
+                <h1 x-text="$t('cardSection.header')" class="text-4xl text-white font-mono">Sorry</h1>
+                <p x-text="$t('cardSection.par_one')" class="text-xl text-white font-mono"></p>
+                <p x-text="$t('cardSection.par_two')" class="text-xl text-white font-mono"></p>
+                <input @click="$locale($event.target.value)" type="radio" id="en" name="fav_language" value="en">
+                <label for="en">EN</label><br>
+                <input checked @click="$locale($event.target.value)" type="radio" id="ua" name="fav_language" value="ua">
+                <label for="ua">UA</label><br>
+            </div>
+        </div>
+     </section> 
+     <section x-data id="cardSection" class="flex flex-col mb-8 bg-slate-800 rounded w-[80dvw] h-[80dvh] shadow-black shadow-2xl">  
+        <div id="window-head" class="border-b border-slate-500 px-3 flex items-center">
+            <div class="flex gap-1">
+                <div class="w-2 h-2 bg-red-500 rounded-full"></div>
+                <div class="w-2 h-2 bg-yellow-400 rounded-full"></div>
+                <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+            </div>
+            <p class="text-white font-mono px-auto m-auto " x-text="$t('cardSection.head')"></p>
+        </div>
+
+        <div class="flex flex-col justify-center h-full">
+            <div class="m-auto w-2/3">
+                <h1 x-text="$t('cardSection.header')" class="text-4xl text-white font-mono">Sorry</h1>
+                <p x-text="$t('cardSection.par_one')" class="text-xl text-white font-mono"></p>
+                <p x-text="$t('cardSection.par_two')" class="text-xl text-white font-mono"></p>
+                <input @click="$locale($event.target.value)" type="radio" id="en" name="fav_language" value="en">
+                <label for="en">EN</label><br>
+                <input checked @click="$locale($event.target.value)" type="radio" id="ua" name="fav_language" value="ua">
+                <label for="ua">UA</label><br>
+            </div>
+        </div>
+     </section> 
+     <section x-data id="cardSection" class="flex flex-col mb-8 bg-slate-800 rounded w-[80dvw] h-[80dvh] shadow-black shadow-2xl">  
+        <div id="window-head" class="border-b border-slate-500 px-3 flex items-center">
+            <div class="flex gap-1">
+                <div class="w-2 h-2 bg-red-500 rounded-full"></div>
+                <div class="w-2 h-2 bg-yellow-400 rounded-full"></div>
+                <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+            </div>
+            <p class="text-white font-mono px-auto m-auto " x-text="$t('cardSection.head')"></p>
+        </div>
+
+        <div class="flex flex-col justify-center h-full">
+            <div class="m-auto w-2/3">
+                <h1 x-text="$t('cardSection.header')" class="text-4xl text-white font-mono">Sorry</h1>
+                <p x-text="$t('cardSection.par_one')" class="text-xl text-white font-mono"></p>
+                <p x-text="$t('cardSection.par_two')" class="text-xl text-white font-mono"></p>
+                <input @click="$locale($event.target.value)" type="radio" id="en" name="fav_language" value="en">
+                <label for="en">EN</label><br>
+                <input checked @click="$locale($event.target.value)" type="radio" id="ua" name="fav_language" value="ua">
+                <label for="ua">UA</label><br>
+            </div>
+        </div>
+     </section> 
+     <section x-data id="cardSection" class="flex flex-col mb-8 bg-slate-800 rounded w-[80dvw] h-[80dvh] shadow-black shadow-2xl">  
+        <div id="window-head" class="border-b border-slate-500 px-3 flex items-center">
+            <div class="flex gap-1">
+                <div class="w-2 h-2 bg-red-500 rounded-full"></div>
+                <div class="w-2 h-2 bg-yellow-400 rounded-full"></div>
+                <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+            </div>
+            <p class="text-white font-mono px-auto m-auto " x-text="$t('cardSection.head')"></p>
+        </div>
+
+        <div class="flex flex-col justify-center h-full">
+            <div class="m-auto w-2/3">
+                <h1 x-text="$t('cardSection.header')" class="text-4xl text-white font-mono">Sorry</h1>
+                <p x-text="$t('cardSection.par_one')" class="text-xl text-white font-mono"></p>
+                <p x-text="$t('cardSection.par_two')" class="text-xl text-white font-mono"></p>
+                <input @click="$locale($event.target.value)" type="radio" id="en" name="fav_language" value="en">
+                <label for="en">EN</label><br>
+                <input checked @click="$locale($event.target.value)" type="radio" id="ua" name="fav_language" value="ua">
+                <label for="ua">UA</label><br>
+            </div>
+        </div>
+     </section> 
+     <section x-data id="cardSection" class="flex flex-col mb-8 bg-slate-800 rounded w-[80dvw] h-[80dvh] shadow-black shadow-2xl">  
+        <div id="window-head" class="border-b border-slate-500 px-3 flex items-center">
+            <div class="flex gap-1">
+                <div class="w-2 h-2 bg-red-500 rounded-full"></div>
+                <div class="w-2 h-2 bg-yellow-400 rounded-full"></div>
+                <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+            </div>
+            <p class="text-white font-mono px-auto m-auto " x-text="$t('cardSection.head')"></p>
+        </div>
+
+        <div class="flex flex-col justify-center h-full">
+            <div class="m-auto w-2/3">
+                <h1 x-text="$t('cardSection.header')" class="text-4xl text-white font-mono">Sorry</h1>
+                <p x-text="$t('cardSection.par_one')" class="text-xl text-white font-mono"></p>
+                <p x-text="$t('cardSection.par_two')" class="text-xl text-white font-mono"></p>
+                <input @click="$locale($event.target.value)" type="radio" id="en" name="fav_language" value="en">
+                <label for="en">EN</label><br>
+                <input checked @click="$locale($event.target.value)" type="radio" id="ua" name="fav_language" value="ua">
+                <label for="ua">UA</label><br>
+            </div>
+        </div>
+     </section> 
+     <section x-data id="cardSection" class="flex flex-col mb-8 bg-slate-800 rounded w-[80dvw] h-[80dvh] shadow-black shadow-2xl">  
+        <div id="window-head" class="border-b border-slate-500 px-3 flex items-center">
+            <div class="flex gap-1">
+                <div class="w-2 h-2 bg-red-500 rounded-full"></div>
+                <div class="w-2 h-2 bg-yellow-400 rounded-full"></div>
+                <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+            </div>
+            <p class="text-white font-mono px-auto m-auto " x-text="$t('cardSection.head')"></p>
+        </div>
+
+        <div class="flex flex-col justify-center h-full">
+            <div class="m-auto w-2/3">
+                <h1 x-text="$t('cardSection.header')" class="text-4xl text-white font-mono">Sorry</h1>
+                <p x-text="$t('cardSection.par_one')" class="text-xl text-white font-mono"></p>
+                <p x-text="$t('cardSection.par_two')" class="text-xl text-white font-mono"></p>
+                <input @click="$locale($event.target.value)" type="radio" id="en" name="fav_language" value="en">
+                <label for="en">EN</label><br>
+                <input checked @click="$locale($event.target.value)" type="radio" id="ua" name="fav_language" value="ua">
+                <label for="ua">UA</label><br>
+            </div>
+        </div>
+     </section> 
+     <section x-data id="cardSection" class="flex flex-col mb-8 bg-slate-800 rounded w-[80dvw] h-[80dvh] shadow-black shadow-2xl">  
+        <div id="window-head" class="border-b border-slate-500 px-3 flex items-center">
+            <div class="flex gap-1">
+                <div class="w-2 h-2 bg-red-500 rounded-full"></div>
+                <div class="w-2 h-2 bg-yellow-400 rounded-full"></div>
+                <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+            </div>
+            <p class="text-white font-mono px-auto m-auto " x-text="$t('cardSection.head')"></p>
+        </div>
+
+        <div class="flex flex-col justify-center h-full">
+            <div class="m-auto w-2/3">
+                <h1 x-text="$t('cardSection.header')" class="text-4xl text-white font-mono">Sorry</h1>
+                <p x-text="$t('cardSection.par_one')" class="text-xl text-white font-mono"></p>
+                <p x-text="$t('cardSection.par_two')" class="text-xl text-white font-mono"></p>
+                <input @click="$locale($event.target.value)" type="radio" id="en" name="fav_language" value="en">
+                <label for="en">EN</label><br>
+                <input checked @click="$locale($event.target.value)" type="radio" id="ua" name="fav_language" value="ua">
+                <label for="ua">UA</label><br>
+            </div>
+        </div>
+     </section> 
+     <section x-data id="cardSection" class="flex flex-col mb-8 bg-slate-800 rounded w-[80dvw] h-[80dvh] shadow-black shadow-2xl">  
+        <div id="window-head" class="border-b border-slate-500 px-3 flex items-center">
+            <div class="flex gap-1">
+                <div class="w-2 h-2 bg-red-500 rounded-full"></div>
+                <div class="w-2 h-2 bg-yellow-400 rounded-full"></div>
+                <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+            </div>
+            <p class="text-white font-mono px-auto m-auto " x-text="$t('cardSection.head')"></p>
+        </div>
+
+        <div class="flex flex-col justify-center h-full">
+            <div class="m-auto w-2/3">
+                <h1 x-text="$t('cardSection.header')" class="text-4xl text-white font-mono">Sorry</h1>
+                <p x-text="$t('cardSection.par_one')" class="text-xl text-white font-mono"></p>
+                <p x-text="$t('cardSection.par_two')" class="text-xl text-white font-mono"></p>
+                <input @click="$locale($event.target.value)" type="radio" id="en" name="fav_language" value="en">
+                <label for="en">EN</label><br>
+                <input checked @click="$locale($event.target.value)" type="radio" id="ua" name="fav_language" value="ua">
+                <label for="ua">UA</label><br>
+            </div>
+        </div>
+     </section> 
+     <section x-data id="cardSection" class="flex flex-col mb-8 bg-slate-800 rounded w-[80dvw] h-[80dvh] shadow-black shadow-2xl">  
+        <div id="window-head" class="border-b border-slate-500 px-3 flex items-center">
+            <div class="flex gap-1">
+                <div class="w-2 h-2 bg-red-500 rounded-full"></div>
+                <div class="w-2 h-2 bg-yellow-400 rounded-full"></div>
+                <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+            </div>
+            <p class="text-white font-mono px-auto m-auto " x-text="$t('cardSection.head')"></p>
+        </div>
+
+        <div class="flex flex-col justify-center h-full">
+            <div class="m-auto w-2/3">
+                <h1 x-text="$t('cardSection.header')" class="text-4xl text-white font-mono">Sorry</h1>
+                <p x-text="$t('cardSection.par_one')" class="text-xl text-white font-mono"></p>
+                <p x-text="$t('cardSection.par_two')" class="text-xl text-white font-mono"></p>
+                <input @click="$locale($event.target.value)" type="radio" id="en" name="fav_language" value="en">
+                <label for="en">EN</label><br>
+                <input checked @click="$locale($event.target.value)" type="radio" id="ua" name="fav_language" value="ua">
+                <label for="ua">UA</label><br>
+            </div>
+        </div>
+     </section> 
+     <section x-data id="cardSection" class="flex flex-col mb-8 bg-slate-800 rounded w-[80dvw] h-[80dvh] shadow-black shadow-2xl">  
+        <div id="window-head" class="border-b border-slate-500 px-3 flex items-center">
+            <div class="flex gap-1">
+                <div class="w-2 h-2 bg-red-500 rounded-full"></div>
+                <div class="w-2 h-2 bg-yellow-400 rounded-full"></div>
+                <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+            </div>
+            <p class="text-white font-mono px-auto m-auto " x-text="$t('cardSection.head')"></p>
+        </div>
+
+        <div class="flex flex-col justify-center h-full">
+            <div class="m-auto w-2/3">
+                <h1 x-text="$t('cardSection.header')" class="text-4xl text-white font-mono">Sorry</h1>
+                <p x-text="$t('cardSection.par_one')" class="text-xl text-white font-mono"></p>
+                <p x-text="$t('cardSection.par_two')" class="text-xl text-white font-mono"></p>
+                <input @click="$locale($event.target.value)" type="radio" id="en" name="fav_language" value="en">
+                <label for="en">EN</label><br>
+                <input checked @click="$locale($event.target.value)" type="radio" id="ua" name="fav_language" value="ua">
+                <label for="ua">UA</label><br>
+            </div>
+        </div>
+     </section> 
+     <section x-data id="cardSection" class="flex flex-col mb-8 bg-slate-800 rounded w-[80dvw] h-[80dvh] shadow-black shadow-2xl">  
+        <div id="window-head" class="border-b border-slate-500 px-3 flex items-center">
+            <div class="flex gap-1">
+                <div class="w-2 h-2 bg-red-500 rounded-full"></div>
+                <div class="w-2 h-2 bg-yellow-400 rounded-full"></div>
+                <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+            </div>
+            <p class="text-white font-mono px-auto m-auto " x-text="$t('cardSection.head')"></p>
+        </div>
+
+        <div class="flex flex-col justify-center h-full">
+            <div class="m-auto w-2/3">
+                <h1 x-text="$t('cardSection.header')" class="text-4xl text-white font-mono">Sorry</h1>
+                <p x-text="$t('cardSection.par_one')" class="text-xl text-white font-mono"></p>
+                <p x-text="$t('cardSection.par_two')" class="text-xl text-white font-mono"></p>
+                <input @click="$locale($event.target.value)" type="radio" id="en" name="fav_language" value="en">
+                <label for="en">EN</label><br>
+                <input checked @click="$locale($event.target.value)" type="radio" id="ua" name="fav_language" value="ua">
+                <label for="ua">UA</label><br>
+            </div>
+        </div>
+     </section> 
+     <section x-data id="cardSection" class="flex flex-col mb-8 bg-slate-800 rounded w-[80dvw] h-[80dvh] shadow-black shadow-2xl">  
+        <div id="window-head" class="border-b border-slate-500 px-3 flex items-center">
+            <div class="flex gap-1">
+                <div class="w-2 h-2 bg-red-500 rounded-full"></div>
+                <div class="w-2 h-2 bg-yellow-400 rounded-full"></div>
+                <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+            </div>
+            <p class="text-white font-mono px-auto m-auto " x-text="$t('cardSection.head')"></p>
+        </div>
+
+        <div class="flex flex-col justify-center h-full">
+            <div class="m-auto w-2/3">
+                <h1 x-text="$t('cardSection.header')" class="text-4xl text-white font-mono">Sorry</h1>
+                <p x-text="$t('cardSection.par_one')" class="text-xl text-white font-mono"></p>
+                <p x-text="$t('cardSection.par_two')" class="text-xl text-white font-mono"></p>
+                <input @click="$locale($event.target.value)" type="radio" id="en" name="fav_language" value="en">
+                <label for="en">EN</label><br>
+                <input checked @click="$locale($event.target.value)" type="radio" id="ua" name="fav_language" value="ua">
+                <label for="ua">UA</label><br>
+            </div>
+        </div>
+     </section> 
+     <section x-data id="cardSection" class="flex flex-col mb-8 bg-slate-800 rounded w-[80dvw] h-[80dvh] shadow-black shadow-2xl">  
+        <div id="window-head" class="border-b border-slate-500 px-3 flex items-center">
+            <div class="flex gap-1">
+                <div class="w-2 h-2 bg-red-500 rounded-full"></div>
+                <div class="w-2 h-2 bg-yellow-400 rounded-full"></div>
+                <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+            </div>
+            <p class="text-white font-mono px-auto m-auto " x-text="$t('cardSection.head')"></p>
+        </div>
+
+        <div class="flex flex-col justify-center h-full">
+            <div class="m-auto w-2/3">
+                <h1 x-text="$t('cardSection.header')" class="text-4xl text-white font-mono">Sorry</h1>
+                <p x-text="$t('cardSection.par_one')" class="text-xl text-white font-mono"></p>
+                <p x-text="$t('cardSection.par_two')" class="text-xl text-white font-mono"></p>
+                <input @click="$locale($event.target.value)" type="radio" id="en" name="fav_language" value="en">
+                <label for="en">EN</label><br>
+                <input checked @click="$locale($event.target.value)" type="radio" id="ua" name="fav_language" value="ua">
+                <label for="ua">UA</label><br>
+            </div>
+        </div>
+     </section> 
+     <section x-data id="cardSection" class="flex flex-col mb-8 bg-slate-800 rounded w-[80dvw] h-[80dvh] shadow-black shadow-2xl">  
+        <div id="window-head" class="border-b border-slate-500 px-3 flex items-center">
+            <div class="flex gap-1">
+                <div class="w-2 h-2 bg-red-500 rounded-full"></div>
+                <div class="w-2 h-2 bg-yellow-400 rounded-full"></div>
+                <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+            </div>
+            <p class="text-white font-mono px-auto m-auto " x-text="$t('cardSection.head')"></p>
+        </div>
+
+        <div class="flex flex-col justify-center h-full">
+            <div class="m-auto w-2/3">
+                <h1 x-text="$t('cardSection.header')" class="text-4xl text-white font-mono">Sorry</h1>
+                <p x-text="$t('cardSection.par_one')" class="text-xl text-white font-mono"></p>
+                <p x-text="$t('cardSection.par_two')" class="text-xl text-white font-mono"></p>
+                <input @click="$locale($event.target.value)" type="radio" id="en" name="fav_language" value="en">
+                <label for="en">EN</label><br>
+                <input checked @click="$locale($event.target.value)" type="radio" id="ua" name="fav_language" value="ua">
+                <label for="ua">UA</label><br>
+            </div>
+        </div>
+     </section> 
+     <section x-data id="cardSection" class="flex flex-col mb-8 bg-slate-800 rounded w-[80dvw] h-[80dvh] shadow-black shadow-2xl">  
+        <div id="window-head" class="border-b border-slate-500 px-3 flex items-center">
+            <div class="flex gap-1">
+                <div class="w-2 h-2 bg-red-500 rounded-full"></div>
+                <div class="w-2 h-2 bg-yellow-400 rounded-full"></div>
+                <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+            </div>
+            <p class="text-white font-mono px-auto m-auto " x-text="$t('cardSection.head')"></p>
+        </div>
+
+        <div class="flex flex-col justify-center h-full">
+            <div class="m-auto w-2/3">
+                <h1 x-text="$t('cardSection.header')" class="text-4xl text-white font-mono">Sorry</h1>
+                <p x-text="$t('cardSection.par_one')" class="text-xl text-white font-mono"></p>
+                <p x-text="$t('cardSection.par_two')" class="text-xl text-white font-mono"></p>
+                <input @click="$locale($event.target.value)" type="radio" id="en" name="fav_language" value="en">
+                <label for="en">EN</label><br>
+                <input checked @click="$locale($event.target.value)" type="radio" id="ua" name="fav_language" value="ua">
+                <label for="ua">UA</label><br>
+            </div>
+        </div>
+     </section> 
+     <section x-data id="cardSection" class="flex flex-col mb-8 bg-slate-800 rounded w-[80dvw] h-[80dvh] shadow-black shadow-2xl">  
+        <div id="window-head" class="border-b border-slate-500 px-3 flex items-center">
+            <div class="flex gap-1">
+                <div class="w-2 h-2 bg-red-500 rounded-full"></div>
+                <div class="w-2 h-2 bg-yellow-400 rounded-full"></div>
+                <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+            </div>
+            <p class="text-white font-mono px-auto m-auto " x-text="$t('cardSection.head')"></p>
+        </div>
+
+        <div class="flex flex-col justify-center h-full">
+            <div class="m-auto w-2/3">
+                <h1 x-text="$t('cardSection.header')" class="text-4xl text-white font-mono">Sorry</h1>
+                <p x-text="$t('cardSection.par_one')" class="text-xl text-white font-mono"></p>
+                <p x-text="$t('cardSection.par_two')" class="text-xl text-white font-mono"></p>
+                <input @click="$locale($event.target.value)" type="radio" id="en" name="fav_language" value="en">
+                <label for="en">EN</label><br>
+                <input checked @click="$locale($event.target.value)" type="radio" id="ua" name="fav_language" value="ua">
+                <label for="ua">UA</label><br>
+            </div>
+        </div>
+     </section> 
+     <section x-data id="cardSection" class="flex flex-col mb-8 bg-slate-800 rounded w-[80dvw] h-[80dvh] shadow-black shadow-2xl">  
+        <div id="window-head" class="border-b border-slate-500 px-3 flex items-center">
+            <div class="flex gap-1">
+                <div class="w-2 h-2 bg-red-500 rounded-full"></div>
+                <div class="w-2 h-2 bg-yellow-400 rounded-full"></div>
+                <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+            </div>
+            <p class="text-white font-mono px-auto m-auto " x-text="$t('cardSection.head')"></p>
+        </div>
+
+        <div class="flex flex-col justify-center h-full">
+            <div class="m-auto w-2/3">
+                <h1 x-text="$t('cardSection.header')" class="text-4xl text-white font-mono">Sorry</h1>
+                <p x-text="$t('cardSection.par_one')" class="text-xl text-white font-mono"></p>
+                <p x-text="$t('cardSection.par_two')" class="text-xl text-white font-mono"></p>
+                <input @click="$locale($event.target.value)" type="radio" id="en" name="fav_language" value="en">
+                <label for="en">EN</label><br>
+                <input checked @click="$locale($event.target.value)" type="radio" id="ua" name="fav_language" value="ua">
+                <label for="ua">UA</label><br>
+            </div>
+        </div>
+     </section> 
+     <section x-data id="cardSection" class="flex flex-col mb-8 bg-slate-800 rounded w-[80dvw] h-[80dvh] shadow-black shadow-2xl">  
+        <div id="window-head" class="border-b border-slate-500 px-3 flex items-center">
+            <div class="flex gap-1">
+                <div class="w-2 h-2 bg-red-500 rounded-full"></div>
+                <div class="w-2 h-2 bg-yellow-400 rounded-full"></div>
+                <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+            </div>
+            <p class="text-white font-mono px-auto m-auto " x-text="$t('cardSection.head')"></p>
+        </div>
+
+        <div class="flex flex-col justify-center h-full">
+            <div class="m-auto w-2/3">
+                <h1 x-text="$t('cardSection.header')" class="text-4xl text-white font-mono">Sorry</h1>
+                <p x-text="$t('cardSection.par_one')" class="text-xl text-white font-mono"></p>
+                <p x-text="$t('cardSection.par_two')" class="text-xl text-white font-mono"></p>
+                <input @click="$locale($event.target.value)" type="radio" id="en" name="fav_language" value="en">
+                <label for="en">EN</label><br>
+                <input checked @click="$locale($event.target.value)" type="radio" id="ua" name="fav_language" value="ua">
+                <label for="ua">UA</label><br>
+            </div>
+        </div>
+     </section> 
+     <section x-data id="cardSection" class="flex flex-col mb-8 bg-slate-800 rounded w-[80dvw] h-[80dvh] shadow-black shadow-2xl">  
+        <div id="window-head" class="border-b border-slate-500 px-3 flex items-center">
+            <div class="flex gap-1">
+                <div class="w-2 h-2 bg-red-500 rounded-full"></div>
+                <div class="w-2 h-2 bg-yellow-400 rounded-full"></div>
+                <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+            </div>
+            <p class="text-white font-mono px-auto m-auto " x-text="$t('cardSection.head')"></p>
+        </div>
+
+        <div class="flex flex-col justify-center h-full">
+            <div class="m-auto w-2/3">
+                <h1 x-text="$t('cardSection.header')" class="text-4xl text-white font-mono">Sorry</h1>
+                <p x-text="$t('cardSection.par_one')" class="text-xl text-white font-mono"></p>
+                <p x-text="$t('cardSection.par_two')" class="text-xl text-white font-mono"></p>
+                <input @click="$locale($event.target.value)" type="radio" id="en" name="fav_language" value="en">
+                <label for="en">EN</label><br>
+                <input checked @click="$locale($event.target.value)" type="radio" id="ua" name="fav_language" value="ua">
+                <label for="ua">UA</label><br>
+            </div>
+        </div>
+     </section> 
+     <section x-data id="cardSection" class="flex flex-col mb-8 bg-slate-800 rounded w-[80dvw] h-[80dvh] shadow-black shadow-2xl">  
+        <div id="window-head" class="border-b border-slate-500 px-3 flex items-center">
+            <div class="flex gap-1">
+                <div class="w-2 h-2 bg-red-500 rounded-full"></div>
+                <div class="w-2 h-2 bg-yellow-400 rounded-full"></div>
+                <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+            </div>
+            <p class="text-white font-mono px-auto m-auto " x-text="$t('cardSection.head')"></p>
+        </div>
+
+        <div class="flex flex-col justify-center h-full">
+            <div class="m-auto w-2/3">
+                <h1 x-text="$t('cardSection.header')" class="text-4xl text-white font-mono">Sorry</h1>
+                <p x-text="$t('cardSection.par_one')" class="text-xl text-white font-mono"></p>
+                <p x-text="$t('cardSection.par_two')" class="text-xl text-white font-mono"></p>
+                <input @click="$locale($event.target.value)" type="radio" id="en" name="fav_language" value="en">
+                <label for="en">EN</label><br>
+                <input checked @click="$locale($event.target.value)" type="radio" id="ua" name="fav_language" value="ua">
+                <label for="ua">UA</label><br>
+            </div>
+        </div>
+     </section> 
+     <section x-data id="cardSection" class="flex flex-col mb-8 bg-slate-800 rounded w-[80dvw] h-[80dvh] shadow-black shadow-2xl">  
+        <div id="window-head" class="border-b border-slate-500 px-3 flex items-center">
+            <div class="flex gap-1">
+                <div class="w-2 h-2 bg-red-500 rounded-full"></div>
+                <div class="w-2 h-2 bg-yellow-400 rounded-full"></div>
+                <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+            </div>
+            <p class="text-white font-mono px-auto m-auto " x-text="$t('cardSection.head')"></p>
+        </div>
+
+        <div class="flex flex-col justify-center h-full">
+            <div class="m-auto w-2/3">
+                <h1 x-text="$t('cardSection.header')" class="text-4xl text-white font-mono">Sorry</h1>
+                <p x-text="$t('cardSection.par_one')" class="text-xl text-white font-mono"></p>
+                <p x-text="$t('cardSection.par_two')" class="text-xl text-white font-mono"></p>
+                <input @click="$locale($event.target.value)" type="radio" id="en" name="fav_language" value="en">
+                <label for="en">EN</label><br>
+                <input checked @click="$locale($event.target.value)" type="radio" id="ua" name="fav_language" value="ua">
+                <label for="ua">UA</label><br>
+            </div>
+        </div>
+     </section> 
+     <section x-data id="cardSection" class="flex flex-col mb-8 bg-slate-800 rounded w-[80dvw] h-[80dvh] shadow-black shadow-2xl">  
+        <div id="window-head" class="border-b border-slate-500 px-3 flex items-center">
+            <div class="flex gap-1">
+                <div class="w-2 h-2 bg-red-500 rounded-full"></div>
+                <div class="w-2 h-2 bg-yellow-400 rounded-full"></div>
+                <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+            </div>
+            <p class="text-white font-mono px-auto m-auto " x-text="$t('cardSection.head')"></p>
+        </div>
+
+        <div class="flex flex-col justify-center h-full">
+            <div class="m-auto w-2/3">
+                <h1 x-text="$t('cardSection.header')" class="text-4xl text-white font-mono">Sorry</h1>
+                <p x-text="$t('cardSection.par_one')" class="text-xl text-white font-mono"></p>
+                <p x-text="$t('cardSection.par_two')" class="text-xl text-white font-mono"></p>
+                <input @click="$locale($event.target.value)" type="radio" id="en" name="fav_language" value="en">
+                <label for="en">EN</label><br>
+                <input checked @click="$locale($event.target.value)" type="radio" id="ua" name="fav_language" value="ua">
+                <label for="ua">UA</label><br>
+            </div>
+        </div>
+     </section> 
+     <section x-data id="cardSection" class="flex flex-col mb-8 bg-slate-800 rounded w-[80dvw] h-[80dvh] shadow-black shadow-2xl">  
+        <div id="window-head" class="border-b border-slate-500 px-3 flex items-center">
+            <div class="flex gap-1">
+                <div class="w-2 h-2 bg-red-500 rounded-full"></div>
+                <div class="w-2 h-2 bg-yellow-400 rounded-full"></div>
+                <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+            </div>
+            <p class="text-white font-mono px-auto m-auto " x-text="$t('cardSection.head')"></p>
+        </div>
+
+        <div class="flex flex-col justify-center h-full">
+            <div class="m-auto w-2/3">
+                <h1 x-text="$t('cardSection.header')" class="text-4xl text-white font-mono">Sorry</h1>
+                <p x-text="$t('cardSection.par_one')" class="text-xl text-white font-mono"></p>
+                <p x-text="$t('cardSection.par_two')" class="text-xl text-white font-mono"></p>
+                <input @click="$locale($event.target.value)" type="radio" id="en" name="fav_language" value="en">
+                <label for="en">EN</label><br>
+                <input checked @click="$locale($event.target.value)" type="radio" id="ua" name="fav_language" value="ua">
+                <label for="ua">UA</label><br>
+            </div>
+        </div>
+     </section> 
+     <section x-data id="cardSection" class="flex flex-col mb-8 bg-slate-800 rounded w-[80dvw] h-[80dvh] shadow-black shadow-2xl">  
+        <div id="window-head" class="border-b border-slate-500 px-3 flex items-center">
+            <div class="flex gap-1">
+                <div class="w-2 h-2 bg-red-500 rounded-full"></div>
+                <div class="w-2 h-2 bg-yellow-400 rounded-full"></div>
+                <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+            </div>
+            <p class="text-white font-mono px-auto m-auto " x-text="$t('cardSection.head')"></p>
+        </div>
+
+        <div class="flex flex-col justify-center h-full">
+            <div class="m-auto w-2/3">
+                <h1 x-text="$t('cardSection.header')" class="text-4xl text-white font-mono">Sorry</h1>
+                <p x-text="$t('cardSection.par_one')" class="text-xl text-white font-mono"></p>
+                <p x-text="$t('cardSection.par_two')" class="text-xl text-white font-mono"></p>
+                <input @click="$locale($event.target.value)" type="radio" id="en" name="fav_language" value="en">
+                <label for="en">EN</label><br>
+                <input checked @click="$locale($event.target.value)" type="radio" id="ua" name="fav_language" value="ua">
+                <label for="ua">UA</label><br>
+            </div>
+        </div>
+     </section> 
+     <section x-data id="cardSection" class="flex flex-col mb-8 bg-slate-800 rounded w-[80dvw] h-[80dvh] shadow-black shadow-2xl">  
+        <div id="window-head" class="border-b border-slate-500 px-3 flex items-center">
+            <div class="flex gap-1">
+                <div class="w-2 h-2 bg-red-500 rounded-full"></div>
+                <div class="w-2 h-2 bg-yellow-400 rounded-full"></div>
+                <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+            </div>
+            <p class="text-white font-mono px-auto m-auto " x-text="$t('cardSection.head')"></p>
+        </div>
+
+        <div class="flex flex-col justify-center h-full">
+            <div class="m-auto w-2/3">
+                <h1 x-text="$t('cardSection.header')" class="text-4xl text-white font-mono">Sorry</h1>
+                <p x-text="$t('cardSection.par_one')" class="text-xl text-white font-mono"></p>
+                <p x-text="$t('cardSection.par_two')" class="text-xl text-white font-mono"></p>
+                <input @click="$locale($event.target.value)" type="radio" id="en" name="fav_language" value="en">
+                <label for="en">EN</label><br>
+                <input checked @click="$locale($event.target.value)" type="radio" id="ua" name="fav_language" value="ua">
+                <label for="ua">UA</label><br>
+            </div>
+        </div>
+     </section> 
+     <section x-data id="cardSection" class="flex flex-col mb-8 bg-slate-800 rounded w-[80dvw] h-[80dvh] shadow-black shadow-2xl">  
+        <div id="window-head" class="border-b border-slate-500 px-3 flex items-center">
+            <div class="flex gap-1">
+                <div class="w-2 h-2 bg-red-500 rounded-full"></div>
+                <div class="w-2 h-2 bg-yellow-400 rounded-full"></div>
+                <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+            </div>
+            <p class="text-white font-mono px-auto m-auto " x-text="$t('cardSection.head')"></p>
+        </div>
+
+        <div class="flex flex-col justify-center h-full">
+            <div class="m-auto w-2/3">
+                <h1 x-text="$t('cardSection.header')" class="text-4xl text-white font-mono">Sorry</h1>
+                <p x-text="$t('cardSection.par_one')" class="text-xl text-white font-mono"></p>
+                <p x-text="$t('cardSection.par_two')" class="text-xl text-white font-mono"></p>
+                <input @click="$locale($event.target.value)" type="radio" id="en" name="fav_language" value="en">
+                <label for="en">EN</label><br>
+                <input checked @click="$locale($event.target.value)" type="radio" id="ua" name="fav_language" value="ua">
+                <label for="ua">UA</label><br>
+            </div>
+        </div>
+     </section> 
+     <section x-data id="cardSection" class="flex flex-col mb-8 bg-slate-800 rounded w-[80dvw] h-[80dvh] shadow-black shadow-2xl">  
+        <div id="window-head" class="border-b border-slate-500 px-3 flex items-center">
+            <div class="flex gap-1">
+                <div class="w-2 h-2 bg-red-500 rounded-full"></div>
+                <div class="w-2 h-2 bg-yellow-400 rounded-full"></div>
+                <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+            </div>
+            <p class="text-white font-mono px-auto m-auto " x-text="$t('cardSection.head')"></p>
+        </div>
+
+        <div class="flex flex-col justify-center h-full">
+            <div class="m-auto w-2/3">
+                <h1 x-text="$t('cardSection.header')" class="text-4xl text-white font-mono">Sorry</h1>
+                <p x-text="$t('cardSection.par_one')" class="text-xl text-white font-mono"></p>
+                <p x-text="$t('cardSection.par_two')" class="text-xl text-white font-mono"></p>
+                <input @click="$locale($event.target.value)" type="radio" id="en" name="fav_language" value="en">
+                <label for="en">EN</label><br>
+                <input checked @click="$locale($event.target.value)" type="radio" id="ua" name="fav_language" value="ua">
+                <label for="ua">UA</label><br>
+            </div>
+        </div>
+     </section> 
+     <section x-data id="cardSection" class="flex flex-col mb-8 bg-slate-800 rounded w-[80dvw] h-[80dvh] shadow-black shadow-2xl">  
+        <div id="window-head" class="border-b border-slate-500 px-3 flex items-center">
+            <div class="flex gap-1">
+                <div class="w-2 h-2 bg-red-500 rounded-full"></div>
+                <div class="w-2 h-2 bg-yellow-400 rounded-full"></div>
+                <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+            </div>
+            <p class="text-white font-mono px-auto m-auto " x-text="$t('cardSection.head')"></p>
+        </div>
+
+        <div class="flex flex-col justify-center h-full">
+            <div class="m-auto w-2/3">
+                <h1 x-text="$t('cardSection.header')" class="text-4xl text-white font-mono">Sorry</h1>
+                <p x-text="$t('cardSection.par_one')" class="text-xl text-white font-mono"></p>
+                <p x-text="$t('cardSection.par_two')" class="text-xl text-white font-mono"></p>
+                <input @click="$locale($event.target.value)" type="radio" id="en" name="fav_language" value="en">
+                <label for="en">EN</label><br>
+                <input checked @click="$locale($event.target.value)" type="radio" id="ua" name="fav_language" value="ua">
+                <label for="ua">UA</label><br>
+            </div>
+        </div>
+     </section> 
+     <section x-data id="cardSection" class="flex flex-col mb-8 bg-slate-800 rounded w-[80dvw] h-[80dvh] shadow-black shadow-2xl">  
+        <div id="window-head" class="border-b border-slate-500 px-3 flex items-center">
+            <div class="flex gap-1">
+                <div class="w-2 h-2 bg-red-500 rounded-full"></div>
+                <div class="w-2 h-2 bg-yellow-400 rounded-full"></div>
+                <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+            </div>
+            <p class="text-white font-mono px-auto m-auto " x-text="$t('cardSection.head')"></p>
+        </div>
+
+        <div class="flex flex-col justify-center h-full">
+            <div class="m-auto w-2/3">
+                <h1 x-text="$t('cardSection.header')" class="text-4xl text-white font-mono">Sorry</h1>
+                <p x-text="$t('cardSection.par_one')" class="text-xl text-white font-mono"></p>
+                <p x-text="$t('cardSection.par_two')" class="text-xl text-white font-mono"></p>
+                <input @click="$locale($event.target.value)" type="radio" id="en" name="fav_language" value="en">
+                <label for="en">EN</label><br>
+                <input checked @click="$locale($event.target.value)" type="radio" id="ua" name="fav_language" value="ua">
+                <label for="ua">UA</label><br>
+            </div>
+        </div>
+     </section> 
+     <section x-data id="cardSection" class="flex flex-col mb-8 bg-slate-800 rounded w-[80dvw] h-[80dvh] shadow-black shadow-2xl">  
+        <div id="window-head" class="border-b border-slate-500 px-3 flex items-center">
+            <div class="flex gap-1">
+                <div class="w-2 h-2 bg-red-500 rounded-full"></div>
+                <div class="w-2 h-2 bg-yellow-400 rounded-full"></div>
+                <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+            </div>
+            <p class="text-white font-mono px-auto m-auto " x-text="$t('cardSection.head')"></p>
+        </div>
+
+        <div class="flex flex-col justify-center h-full">
+            <div class="m-auto w-2/3">
+                <h1 x-text="$t('cardSection.header')" class="text-4xl text-white font-mono">Sorry</h1>
+                <p x-text="$t('cardSection.par_one')" class="text-xl text-white font-mono"></p>
+                <p x-text="$t('cardSection.par_two')" class="text-xl text-white font-mono"></p>
+                <input @click="$locale($event.target.value)" type="radio" id="en" name="fav_language" value="en">
+                <label for="en">EN</label><br>
+                <input checked @click="$locale($event.target.value)" type="radio" id="ua" name="fav_language" value="ua">
+                <label for="ua">UA</label><br>
+            </div>
+        </div>
+     </section> 
+     <section x-data id="cardSection" class="flex flex-col mb-8 bg-slate-800 rounded w-[80dvw] h-[80dvh] shadow-black shadow-2xl">  
+        <div id="window-head" class="border-b border-slate-500 px-3 flex items-center">
+            <div class="flex gap-1">
+                <div class="w-2 h-2 bg-red-500 rounded-full"></div>
+                <div class="w-2 h-2 bg-yellow-400 rounded-full"></div>
+                <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+            </div>
+            <p class="text-white font-mono px-auto m-auto " x-text="$t('cardSection.head')"></p>
+        </div>
+
+        <div class="flex flex-col justify-center h-full">
+            <div class="m-auto w-2/3">
+                <h1 x-text="$t('cardSection.header')" class="text-4xl text-white font-mono">Sorry</h1>
+                <p x-text="$t('cardSection.par_one')" class="text-xl text-white font-mono"></p>
+                <p x-text="$t('cardSection.par_two')" class="text-xl text-white font-mono"></p>
+                <input @click="$locale($event.target.value)" type="radio" id="en" name="fav_language" value="en">
+                <label for="en">EN</label><br>
+                <input checked @click="$locale($event.target.value)" type="radio" id="ua" name="fav_language" value="ua">
+                <label for="ua">UA</label><br>
+            </div>
+        </div>
+     </section> 
+     <section x-data id="cardSection" class="flex flex-col mb-8 bg-slate-800 rounded w-[80dvw] h-[80dvh] shadow-black shadow-2xl">  
+        <div id="window-head" class="border-b border-slate-500 px-3 flex items-center">
+            <div class="flex gap-1">
+                <div class="w-2 h-2 bg-red-500 rounded-full"></div>
+                <div class="w-2 h-2 bg-yellow-400 rounded-full"></div>
+                <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+            </div>
+            <p class="text-white font-mono px-auto m-auto " x-text="$t('cardSection.head')"></p>
+        </div>
+
+        <div class="flex flex-col justify-center h-full">
+            <div class="m-auto w-2/3">
+                <h1 x-text="$t('cardSection.header')" class="text-4xl text-white font-mono">Sorry</h1>
+                <p x-text="$t('cardSection.par_one')" class="text-xl text-white font-mono"></p>
+                <p x-text="$t('cardSection.par_two')" class="text-xl text-white font-mono"></p>
+                <input @click="$locale($event.target.value)" type="radio" id="en" name="fav_language" value="en">
+                <label for="en">EN</label><br>
+                <input checked @click="$locale($event.target.value)" type="radio" id="ua" name="fav_language" value="ua">
+                <label for="ua">UA</label><br>
+            </div>
+        </div>
+     </section> 
      <script type="module" src="/src/main.js"></script>
-</body>
-  </html>
+  </body>
+</html>
