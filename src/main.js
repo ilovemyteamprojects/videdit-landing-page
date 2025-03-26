@@ -1,7 +1,7 @@
 import AlpineI18n from 'alpinejs-i18n';
 import Alpine from 'alpinejs';
 
-let locale = 'ua';
+let locale = localStorage.getItem("locale") || 'ua';
 
 let messages = {
     ua: { cardSection: { head: "привіт", header: "Перепрошуємо", par_one: "ця сторінка ще в розробці", par_two: "приходьте потім" } },
@@ -14,11 +14,8 @@ document.addEventListener('alpine-i18n:ready', function () {
 
 Alpine.plugin(AlpineI18n);
 
-Alpine.store('locale', {
-    toggle(value) {
-        // AlpineI18n.locale = "en";
-        console.log(value)
-    }
-});
+document.addEventListener("alpine-i18n:locale-change", function () {
+    localStorage.setItem("locale", window.AlpineI18n.locale)
+})
 
 Alpine.start();
