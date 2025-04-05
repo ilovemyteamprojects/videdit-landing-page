@@ -4,8 +4,14 @@ import Alpine from 'alpinejs';
 let locale = localStorage.getItem("locale") || 'ua';
 
 let messages = {
-    ua: { cardSection: { head: "привіт", header: "Перепрошуємо", par_one: "ця сторінка ще в розробці", par_two: "приходьте потім" } },
-    en: { cardSection: { head: "hello", header: "Sorry", par_one: "this page is under construction yet", par_two: "please visit us later" } },
+    ua: {
+        header: { services: "Послуги", portfolio: "Портфоліо", aboutMe: "Про мене", contacts: "Контакти" },
+        cardSection: { head: "привіт", header: "Перепрошуємо", par_one: "ця сторінка ще в розробці", par_two: "приходьте потім" }
+    },
+    eng: {
+        header: { services: "Services", portfolio: "Portfolio", aboutMe: "About me", contacts: "Contacts" },
+        cardSection: { head: "hello", header: "Sorry", par_one: "this page is under construction yet", par_two: "please visit us later" }
+    },
 };
 
 document.addEventListener('alpine-i18n:ready', function () {
