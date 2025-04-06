@@ -114,6 +114,7 @@
       </button>
       <div
         id="mobileMenu"
+        @click.outside="isMenuOpen = false"
         x-cloak
         x-show="isMenuOpen"
         x-transition:enter="transition-all duration-500 ease-in-out"
