@@ -1,35 +1,370 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="icon" type="image/svg+xml" href="/logo.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./src/style.css">
+    <link rel="stylesheet" href="./src/style.css" />
     <title>Alpine test</title>
   </head>
-  <body x-data class="bg-white flex flex-col items-center justify-center min-h-screen">
-     <main x-data id="cardSection" class="flex flex-col bg-slate-800 rounded w-[80dvw] h-[80dvh] shadow-black shadow-2xl">  
-        <div id="window-head" class="border-b border-slate-500 px-3 flex items-center">
-            <div class="flex gap-1">
-                <div class="w-2 h-2 bg-red-500 rounded-full"></div>
-                <div class="w-2 h-2 bg-yellow-400 rounded-full"></div>
-                <div class="w-2 h-2 bg-green-500 rounded-full"></div>
-            </div>
-            <p class="text-white font-mono px-auto m-auto " x-text="$t('cardSection.head')"></p>
+
+  <body
+    x-data
+    class="bg-white font-ruda flex flex-col items-center justify-center min-h-screen"
+  >
+    <header
+      x-data="{isMenuOpen: false}"
+      class="flex flex-row justify-between w-full h-10 tab:h-[95px] px-1.25 tab:px-9.5 bg-black/60 relative top-0"
+    >
+      <img class="size-[38px] tab:size-22 my-auto" src="/logo.svg" alt="logo" />
+      <div id="pc-header" class="hidden tab:flex">
+        <nav class="my-auto mr-[35px] pc:mr-[91px] desk:mr-[485px]">
+          <ul class="flex tab:gap-7.5 pc:gap-20">
+            <li>
+              <a
+                class="text-white text-lg font-ruda"
+                href="#services"
+                x-text="$t('header.services')"
+                >Послуги</a
+              >
+            </li>
+            <li>
+              <a
+                class="text-white text-lg font-ruda"
+                href="#portfolio"
+                x-text="$t('header.portfolio')"
+                >Портфоліо</a
+              >
+            </li>
+            <li>
+              <a
+                class="text-white text-lg font-ruda"
+                href="#about"
+                x-text="$t('header.aboutMe')"
+                >Про мене</a
+              >
+            </li>
+          </ul>
+        </nav>
+        <div id="tools" class="flex gap-6">
+          <button
+            id="contactsButton"
+            class="mt-8 h-6 px-4 bg-white text-black hover:cursor-pointer"
+            x-text="$t('header.contacts')"
+            @click="alert('Contacts button triggered!')"
+          >
+            Контакти
+          </button>
+          <button
+            id="localeSwitch"
+            class="mt-8 h-6 px-4 bg-white text-black hover:cursor-pointer"
+            @click="$locale($locale() === 'ua' ? 'eng' : 'ua')"
+            :aria-label="$locale() === 'ua' ? 'Switch to English' : 'Переключити на українську'"
+          >
+            <span :class="$locale() === 'ua' ? 'text-black' : 'text-black/60'"
+              >ua</span
+            >|<span
+              :class="$locale() === 'eng' ? 'text-black' : 'text-black/60'"
+              >eng</span
+            >
+          </button>
+        </div>
+      </div>
+      <button
+        id="burgerMenu"
+        @click="isMenuOpen = true; $nextTick(() => $refs.closeNavButton.focus())"
+        aria-label="open navigation menu"
+        x-show="!isMenuOpen"
+        x-ref="burger"
+        x-transition:enter="transition transform ease-in duration-500"
+        x-transition:enter-start="rotate-0 opacity-0"
+        x-transition:enter-end="rotate-360 opacity-100"
+        x-transition:leave="transition transform ease-out duration-500"
+        x-transition:leave-start="rotate-0 opacity-100"
+        x-transition:leave-end="-rotate-360 opacity-0"
+        class="block mr-[5px] tab:hidden cursor-pointer"
+      >
+        <svg
+          width="21"
+          height="20"
+          viewBox="0 0 21 20"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          aria-hidden="true"
+        >
+          <path
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            d="M0 2C0 1.17158 0.67158 0.5 1.5 0.5H19.5C20.3284 0.5 21 1.17158 21 2C21 2.82842 20.3284 3.5 19.5 3.5H1.5C0.67158 3.5 0 2.82842 0 2Z"
+            fill="#D8D8D8"
+          />
+          <path
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            d="M0 10C0 9.17158 0.67158 8.5 1.5 8.5H19.5C20.3284 8.5 21 9.17158 21 10C21 10.8284 20.3284 11.5 19.5 11.5H1.5C0.67158 11.5 0 10.8284 0 10Z"
+            fill="#D8D8D8"
+          />
+          <path
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            d="M0 18C0 17.1716 0.67158 16.5 1.5 16.5H19.5C20.3284 16.5 21 17.1716 21 18C21 18.8284 20.3284 19.5 19.5 19.5H1.5C0.67158 19.5 0 18.8284 0 18Z"
+            fill="#D8D8D8"
+          />
+        </svg>
+      </button>
+      <div
+        id="mobileMenu"
+        @click.outside="isMenuOpen = false"
+        x-cloak
+        x-show="isMenuOpen"
+        x-transition:enter="transition-all duration-500 ease-in-out"
+        x-transition:enter-start="h-10"
+        x-transition:enter-end="h-50"
+        x-transition:leave="transition-all duration-500 ease-in-out"
+        x-transition:leave-start="h-50"
+        x-transition:leave-end="h-10"
+        class="flex flex-col min-w-3/5 overflow-hidden absolute top-0 right-0"
+      >
+        <div id="mobMenuHeader" class="flex flex-row-reverse p-2.5 h-10">
+          <button
+            @click="isMenuOpen = false; $nextTick(() => $refs.burger.focus())"
+            aria-label="close navigation menu"
+            x-show="isMenuOpen"
+            x-ref="closeNavButton"
+            x-transition:enter="transition transform ease-in duration-500"
+            x-transition:enter-start="rotate-0 opacity-0"
+            x-transition:enter-end="-rotate-360 opacity-100"
+            x-transition:leave="transition transform ease-out duration-500"
+            x-transition:leave-start="rotate-0 opacity-100"
+            x-transition:leave-end="rotate-360 opacity-0"
+            class="block tab:hidden cursor-pointer"
+          >
+            <svg
+              width="21"
+              height="20"
+              viewBox="0 0 21 20"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+            >
+              <rect
+                x="2.12132"
+                y="0.707108"
+                width="25"
+                height="3"
+                rx="1.5"
+                transform="rotate(45 2.12132 0.707108)"
+                fill="#D8D8D8"
+              />
+              <rect
+                x="0.707092"
+                y="18.3848"
+                width="25"
+                height="3"
+                rx="1.5"
+                transform="rotate(-45 0.707092 18.3848)"
+                fill="#D8D8D8"
+              />
+            </svg>
+          </button>
+        </div>
+        <div
+          id="mobMenuBody"
+          class="flex flex-col gap-2 pb-4 px-2 bg-black/60 border-1 border-black border-t-0 border-r-0 rounded-bl-lg"
+        >
+          <nav>
+            <ul class="flex flex-col gap-2">
+              <li>
+                <a
+                  class="block px-2 bg-black text-white text-base font-ruda"
+                  href="#services"
+                  x-text="$t('header.services')"
+                  >Послуги</a
+                >
+              </li>
+              <li>
+                <a
+                  class="block px-2 bg-black text-white text-base font-ruda"
+                  href="#portfolio"
+                  x-text="$t('header.portfolio')"
+                  >Портфоліо</a
+                >
+              </li>
+              <li>
+                <a
+                  class="block px-2 bg-black text-white text-base font-ruda"
+                  href="#about"
+                  x-text="$t('header.aboutMe')"
+                  >Про мене</a
+                >
+              </li>
+            </ul>
+          </nav>
+          <button
+            class="flex h-6 px-2 bg-black text-white hover:cursor-pointer"
+            x-text="$t('header.contacts')"
+            @click="alert('Contacts button been triggered!')"
+          >
+            Контакти
+          </button>
+          <button
+            id="localeSwitch"
+            class="flex h-6 px-2 bg-black hover:cursor-pointer"
+            @click="$locale($locale() === 'ua' ? 'eng' : 'ua')"
+            :aria-label="$locale() === 'ua' ? 'Switch to English' : 'Переключити на українську'"
+          >
+            <span :class="$locale() === 'ua' ? 'text-white' : 'text-white/60'"
+              >ua</span
+            ><span :class="$locale() === 'eng' ? 'text-white' : 'text-white/60'"
+              >eng</span
+            >
+          </button>
+        </div>
+      </div>
+    </header>
+    <main>
+      <section
+        x-data
+        id="cardSection"
+        class="t flex flex-col bg-slate-800 rounded w-[80dvw] h-[100dvh] shadow-black shadow-2xl"
+      >
+        <div
+          id="window-head"
+          class="border-b border-slate-500 px-3 flex items-center"
+        >
+          <div class="flex gap-1">
+            <div class="w-2 h-2 bg-red-500 rounded-full"></div>
+            <div class="w-2 h-2 bg-yellow-400 rounded-full"></div>
+            <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+          </div>
+          <p
+            class="text-white font-mono px-auto m-auto"
+            x-text="$t('cardSection.head')"
+          ></p>
         </div>
 
         <div class="flex flex-col justify-center h-full">
-            <div class="m-auto w-2/3">
-                <h1 x-text="$t('cardSection.header')" class="text-4xl text-white font-mono">Sorry</h1>
-                <p x-text="$t('cardSection.par_one')" class="text-xl text-white font-mono"></p>
-                <p x-text="$t('cardSection.par_two')" class="text-xl text-white font-mono"></p>
-                <input :checked="$locale() === 'en'" @click="$locale($event.target.value)" type="radio" id="en" name="fav_language" value="en">
-                <label for="en">EN</label><br>
-                <input :checked="$locale() === 'ua'" @click="$locale($event.target.value)" type="radio" id="ua" name="fav_language" value="ua">
-                <label for="ua">UA</label><br>
-            </div>
+          <div class="m-auto w-2/3">
+            <h1
+              x-text="$t('cardSection.header')"
+              class="text-4xl text-white font-mono"
+            >
+              Sorry
+            </h1>
+            <p
+              x-text="$t('cardSection.par_one')"
+              class="text-xl text-white font-mono"
+            ></p>
+            <p
+              x-text="$t('cardSection.par_two')"
+              class="text-xl text-white font-mono"
+            ></p>
+            <input
+              :checked="$locale() === 'en'"
+              @click="$locale($event.target.value)"
+              type="radio"
+              id="en"
+              name="fav_language"
+              value="en"
+            />
+            <label for="en">EN</label><br />
+            <input
+              :checked="$locale() === 'ua'"
+              @click="$locale($event.target.value)"
+              type="radio"
+              id="ua"
+              name="fav_language"
+              value="ua"
+            />
+            <label for="ua">UA</label><br />
+          </div>
         </div>
-     </main> 
-     <script type="module" src="/src/main.js"></script>
+      </section>
+
+      <section
+        id="services"
+        x-data
+        id="cardSection"
+        class="flex flex-col bg-slate-800 rounded w-[80dvw] h-[80dvh] shadow-black shadow-2xl"
+      >
+        <div
+          id="window-head"
+          class="border-b border-slate-500 px-3 flex items-center"
+        >
+          <div class="flex gap-1">
+            <div class="w-2 h-2 bg-red-500 rounded-full"></div>
+            <div class="w-2 h-2 bg-yellow-400 rounded-full"></div>
+            <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+          </div>
+          <p class="text-white font-mono px-auto m-auto">services</p>
+        </div>
+
+        <div class="flex flex-col justify-center h-full">
+          <div class="m-auto w-2/3">
+            <h1 class="text-4xl text-white font-mono">Hello! I'm a section!</h1>
+            <p class="text-xl text-white font-mono">
+              Welcome to "services" section
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section
+        id="portfolio"
+        x-data
+        id="cardSection"
+        class="flex flex-col bg-slate-800 rounded w-[80dvw] h-[80dvh] shadow-black shadow-2xl"
+      >
+        <div
+          id="window-head"
+          class="border-b border-slate-500 px-3 flex items-center"
+        >
+          <div class="flex gap-1">
+            <div class="w-2 h-2 bg-red-500 rounded-full"></div>
+            <div class="w-2 h-2 bg-yellow-400 rounded-full"></div>
+            <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+          </div>
+          <p class="text-white font-mono px-auto m-auto">portfolio</p>
+        </div>
+
+        <div class="flex flex-col justify-center h-full">
+          <div class="m-auto w-2/3">
+            <h1 class="text-4xl text-white font-mono">Hello! I'm a section!</h1>
+            <p class="text-xl text-white font-mono">
+              Welcome to "portfolio" section
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section
+        id="about"
+        x-data
+        id="cardSection"
+        class="flex flex-col bg-slate-800 rounded w-[80dvw] h-[80dvh] shadow-black shadow-2xl"
+      >
+        <div
+          id="window-head"
+          class="border-b border-slate-500 px-3 flex items-center"
+        >
+          <div class="flex gap-1">
+            <div class="w-2 h-2 bg-red-500 rounded-full"></div>
+            <div class="w-2 h-2 bg-yellow-400 rounded-full"></div>
+            <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+          </div>
+          <p class="text-white font-mono px-auto m-auto">about</p>
+        </div>
+
+        <div class="flex flex-col justify-center h-full">
+          <div class="m-auto w-2/3">
+            <h1 class="text-4xl text-white font-mono">Hello! I'm a section!</h1>
+            <p class="text-xl text-white font-mono">
+              Welcome to "about" section
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+    <script type="module" src="/src/main.js"></script>
   </body>
 </html>
