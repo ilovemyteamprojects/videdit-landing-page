@@ -530,7 +530,7 @@
       <section
         x-data
         id="cardSection"
-        class="t flex flex-col bg-slate-800 rounded w-[80dvw] h-[100dvh] shadow-black shadow-2xl"
+        class="test-style flex flex-col bg-slate-800 rounded w-[80dvw] h-[100dvh] shadow-black shadow-2xl"
       >
         <div
           id="window-head"
@@ -540,6 +540,11 @@
             <div class="w-2 h-2 bg-red-500 rounded-full"></div>
             <div class="w-2 h-2 bg-yellow-400 rounded-full"></div>
             <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+            <div
+              x-cloak
+              x-show="false"
+              class="w-2 h-2 bg-blue-500 rounded-full"
+            ></div>
           </div>
           <p
             class="text-white font-mono px-auto m-auto"
