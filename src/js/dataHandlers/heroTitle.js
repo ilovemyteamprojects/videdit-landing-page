@@ -26,17 +26,17 @@ export default function heroTitle() {
             const bp = this.currentBreakpoint;
 
             const fontSizes = {
-                mob: '7vw',
-                tab: '3rem',
-                pc: '4rem',
-                desk: '5rem',
+                mob: '32px',
+                tab: isTriggered ? '3rem' : '4rem',
+                pc: isTriggered ? '4rem' : '8rem',
+                desk: isTriggered ? '5rem' : '10rem',
             };
 
             const tops = {
                 mob: isTriggered ? `${this.calculatedTop}px` : "18px",
-                tab: isTriggered ? `${this.calculatedTop}px` : "60px",
-                pc: isTriggered ? `${this.calculatedTop}px` : "44px",
-                desk: isTriggered ? `${this.calculatedTop}px` : "1rem",
+                tab: isTriggered ? `${this.calculatedTop + 10}px` : "60px",
+                pc: isTriggered ? `${this.calculatedTop + 70}px` : "44px",
+                desk: isTriggered ? `${this.calculatedTop + 80}px` : "1rem",
             };
 
             const lefts = {

@@ -21,6 +21,8 @@ body {
   min-height: 100vh;
 }
 
+[x-cloak] { display: none !important; }
+
 .btn-blur {
   @apply backdrop-blur-3xl  border border-light/60 hover:border-light
 }
