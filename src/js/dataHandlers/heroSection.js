@@ -4,15 +4,24 @@ export default function heroSectionData() {
         isPaused: false,
 
         init() {
-            // Show header after any interaction
-            ['click', 'scroll', 'keydown', 'touchstart'].forEach(eventName => {
-                window.addEventListener(eventName, () => {
-                    this.show = true;
-                    this.$nextTick(() => {
-                        this.$refs.headerVideo.addEventListener('play', () => this.isPaused = false);
-                        this.$refs.headerVideo.addEventListener('pause', () => this.isPaused = true);
-                    });
-                }, { passive: true, once: true });
+            document.body.style.overflow = "hidden"
+
+            window.addEventListener('keydown', () => {
+                this.show = true;
+                document.body.style.overflow = ""
+            })
+
+            window.addEventListener('wheel', () => {
+                this.show = true;
+
+                setTimeout(() => {
+                    document.body.style.overflow = ""
+                }, 500);
+            }, { passive: true, once: true });
+
+            this.$nextTick(() => {
+                this.$refs.headerVideo.addEventListener('play', () => this.isPaused = false);
+                this.$refs.headerVideo.addEventListener('pause', () => this.isPaused = true);
             });
         },
 
