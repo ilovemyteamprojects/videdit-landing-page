@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Ruda:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alumni+Sans:ital,wght@0,100..900;1,100..900&display=swap');
 @import "tailwindcss";
-@import "./theme.css"
+@import "./theme.css";
 
 :root {
   line-height: 1.5;
@@ -18,6 +19,10 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+}
+
+.btn-blur {
+  @apply backdrop-blur-3xl  border border-light/60 hover:border-light
 }
 
 @media (prefers-reduced-motion: reduce) {
