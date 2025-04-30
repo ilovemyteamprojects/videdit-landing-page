@@ -5,7 +5,7 @@ export default function heroSectionData() {
 
         init() {
             // Show header after any interaction
-            ['click', 'mousemove', 'scroll', 'keydown', 'touchstart'].forEach(eventName => {
+            ['click', 'scroll', 'keydown', 'touchstart'].forEach(eventName => {
                 window.addEventListener(eventName, () => {
                     this.show = true;
                     this.$nextTick(() => {
