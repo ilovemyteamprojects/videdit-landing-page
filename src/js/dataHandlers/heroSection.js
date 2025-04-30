@@ -4,7 +4,7 @@ export default function heroSectionData() {
         isPaused: false,
 
         init() {
-            document.body.style.overflow = "hidden"
+            if (window.scrollY === 0) document.body.style.overflow = "hidden"
 
             window.addEventListener('keydown', () => {
                 this.show = true;
@@ -23,6 +23,8 @@ export default function heroSectionData() {
                 this.$refs.headerVideo.addEventListener('play', () => this.isPaused = false);
                 this.$refs.headerVideo.addEventListener('pause', () => this.isPaused = true);
             });
+
+
         },
 
         pauseVideo(e) {
