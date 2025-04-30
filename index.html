@@ -261,11 +261,14 @@
       </div>
 
       <!-- card -->
+      <!-- inline style & x-effect - for preventing card from flickering
+       but still keeping it in the DOM -->
       <div
+        style="opacity: 0"
         id="heroCard"
         x-ref="heroContainer"
+        x-effect="show ? $refs.heroContainer.style.opacity = '100%' : null"
         class="transition-all ease-in duration-500 flex-col z-10 absolute bottom-15 tab:bottom-10 pc:bottom-[8.5%] left-[calc((100%-288px)/2)] tab:left-6 pc:left-10 desk:left-16 w-72 tab:w-111 pc:w-150"
-        :style="{opacity: show ? '100%' : '0%'}"
       >
         <p
           x-text="$t('hero.description')"
