@@ -23,6 +23,10 @@ body {
 
 [x-cloak] { display: none !important; }
 
+.nothing {
+  color: pink;
+}
+
 .btn-blur {
   @apply backdrop-blur-3xl  border border-light/60 hover:border-light
 }
