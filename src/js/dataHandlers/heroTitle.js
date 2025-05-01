@@ -51,7 +51,8 @@ export default function heroTitle() {
                 left: lefts[bp],
                 transform: bp === "mob" || !isTriggered ? 'translateX(-50%)' : "",
                 fontSize: fontSizes[bp],
-                textWrap: "nowrap"
+                textWrap: "nowrap",
+                transition: isTriggered ? 'all .5s ease-in' : ''
             };
         },
 
