@@ -6,18 +6,12 @@ export default function heroSectionData() {
         init() {
             if (window.scrollY === 0) document.body.style.overflow = "hidden"
 
-            window.addEventListener('keydown', () => {
-                this.show = true;
-                document.body.style.overflow = ""
-            })
+            const events = ['wheel', 'keydown', 'touchstart']
 
-            window.addEventListener('wheel', () => {
-                this.show = true;
+            events.forEach(eventName => {
 
-                setTimeout(() => {
-                    document.body.style.overflow = ""
-                }, 500);
-            }, { passive: true, once: true });
+                window.addEventListener(eventName, this.trigger.bind(this), { passive: true, once: true });
+            });
 
             this.$nextTick(() => {
                 this.$refs.headerVideo.addEventListener('play', () => this.isPaused = false);
@@ -32,6 +26,19 @@ export default function heroSectionData() {
             if (!e.target.hasAttribute("data-interactive") && this.$refs.heroSection.contains(e.currentTarget)) {
                 const vid = this.$refs.headerVideo;
                 vid.paused ? vid.play() : vid.pause();
+            }
+        },
+
+        trigger(e) {
+            console.log(e.type, this.show)
+            this.show = true;
+            console.log(this.show)
+            if (e.type === 'wheel' || e.type === 'touchstart') {
+                setTimeout(() => {
+                    document.body.style.overflow = ""
+                }, 500); //animation length
+            } else {
+                document.body.style.overflow = ""
             }
         }
     }
