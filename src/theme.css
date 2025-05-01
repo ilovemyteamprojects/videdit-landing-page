@@ -1,16 +1,8 @@
 
 @theme {
   --font-ruda: "Ruda", mono;
-  --font-alumni: "Alumni Sans", sans-serif;
-
-  --text-2xl-plus: 28px;
-
-  --color-notWhite: #fefefe;
-  --color-dark: #323232;
-  --color-light: #d3d3d3;
 
   --breakpoint-tab: 768px;
   --breakpoint-pc: 1280px;
   --breakpoint-desk: 1920px;
 }
-
