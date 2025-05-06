@@ -21,10 +21,14 @@ body {
   min-height: 100vh;
 }
 
+* {
+  transition: border-color 0.25s ease-in-out;
+}
+
 [x-cloak] { display: none !important; }
 
 .btn-blur {
-  @apply backdrop-blur-3xl  border border-light/60 hover:border-light
+  @apply backdrop-blur-3xl bg-white/10  border border-light/60 hover:border-light
 }
 
 @media (prefers-reduced-motion: reduce) {
