@@ -12,6 +12,21 @@ document.addEventListener('alpine-i18n:ready', function () {
 
 Alpine.plugin(AlpineI18n);
 
+document.addEventListener('alpine:init', () => {
+    Alpine.store('modal', {
+        isContactModalOpen: false,
+        openContactModal() {
+            this.isContactModalOpen = true;
+        },
+        closeContactModal() {
+            this.isContactModalOpen = false;
+        },
+        toggleContactModal() {
+            this.isContactModalOpen = !this.isContactModalOpen;
+        }
+    });
+});
+
 document.addEventListener("alpine-i18n:locale-change", function () {
     localStorage.setItem("locale", window.AlpineI18n.locale);
 });
