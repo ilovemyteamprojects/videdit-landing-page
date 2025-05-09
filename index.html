@@ -43,7 +43,7 @@
         <a
           href="#heroSection"
           class="cursor-pointer my-auto"
-          aria-label="go to top"
+          :aria-label="$locale() !== 'ua' ? 'to top' : 'вгору'"
           data-interactive
         >
           <img
@@ -108,7 +108,7 @@
             id="contactsButton"
             class="h-10 w-22 bg-dark my-auto text-white text-lg font-bold font-alumni hover:cursor-pointer"
             x-text="$t('header.contacts')"
-            @click="alert('Contacts button triggered!')"
+            @click="$store.modal.openContactModal()"
             data-interactive
           >
             Контакти
@@ -135,7 +135,7 @@
         <button
           id="burgerMenu"
           @click="isMenuOpen = true; $nextTick(() => $refs.closeNavButton.focus())"
-          aria-label="open navigation menu"
+          :aria-label="$locale() !== 'ua' ? 'open navigation menu' : 'відкрити навігаційне меню'"
           x-show="!isMenuOpen"
           x-ref="burger"
           x-transition:enter="transition transform ease-in duration-500"
@@ -165,7 +165,7 @@
           <div id="mobMenuHeader" class="flex flex-row-reverse p-2.5 h-10">
             <button
               @click="isMenuOpen = false; $nextTick(() => $refs.burger.focus())"
-              aria-label="close navigation menu"
+              :aria-label="$locale() !== 'ua' ? 'close navigation menu' : 'закрити навігаційне меню'"
               x-show="isMenuOpen"
               x-ref="closeNavButton"
               x-transition:enter="transition transform ease-in duration-500"
@@ -180,7 +180,7 @@
                 width="21"
                 height="20"
                 viewBox="0 0 21 20"
-                fill="none"
+                fill="red"
                 xmlns="http://www.w3.org/2000/svg"
                 aria-hidden="true"
               >
@@ -238,9 +238,9 @@
               </ul>
             </nav>
             <button
-              class="flex h-6 px-2 bg-black text-white hover:cursor-pointer"
+              class="flex h-6 px-2 bg-black border border-red-500 text-white hover:cursor-pointer"
               x-text="$t('header.contacts')"
-              @click="alert('Contacts button been triggered!')"
+              @click="$store.modal.openContactModal()"
             >
               Контакти
             </button>
@@ -281,7 +281,7 @@
           <button
             class="w-72 h-10 tab:h-14 desk:h-16 bg-dark font-alumni font-bold text-lg tab:text-2xl desk:text-2xl-plus"
             x-text="$t('hero.order')"
-            @click="alert('Contacts button been triggered!')"
+            @click="$store.modal.openContactModal()"
             data-interactive
           >
             Замовити монтаж
@@ -675,6 +675,135 @@
         </div>
       </section>
     </main>
+
+    <div
+      class="relative z-50"
+      x-data="{close() {$store.modal.closeContactModal()}}"
+      @keydown.esc.window="close()"
+    >
+      <!-- Overlay -->
+      <div
+        x-show="$store.modal.isContactModalOpen"
+        x-transition.opacity
+        class="fixed flex items-center justify-center inset-0 bg-darker/60"
+      >
+        <!-- Centered modal -->
+        <div
+          x-show="$store.modal.isContactModalOpen"
+          x-transition
+          x-ref="modal"
+          @click.outside="close()"
+          class="bg-white shadow-lg"
+        >
+          <div
+            class="py-14 tab:py-18 pc:py-14 px-4 tab:px-26 pc:px-8 flex flex-col gap-9 tab:gap-8 pc:flex-row relative"
+          >
+            <!-- close modal button -->
+            <button
+              @click="close()"
+              class="absolute top-0 right-0 cursor-pointer size-11"
+              :aria-label="$locale() !== 'ua' ? 'close contact modal window' : 'закрити вікно з контактами'"
+            >
+              <img src="/close-button.svg" alt="x" aria-hidden="true" />
+            </button>
+
+            <!-- picture -->
+            <img
+              src="/author-photo-cropped.png"
+              alt="rounded photo of woman"
+              class="mx-auto pc:mx-0 pc:my-auto rounded-full scale-x-[-1] size-29 tab:size-62.5 pc:size-75"
+            />
+
+            <!-- menu list -->
+            <ul
+              class="flex flex-col gap-5 text-white text-lg font-bold font-alumni uppercase"
+            >
+              <li class=" ">
+                <a
+                  class="flex items-center justify-center w-72 tab:w-98 pc:w-104 h-10 tab:h-14 pc:h-16 mx-auto bg-dark font-bold text-lg tab:text-2xl desk:text-2xl-plus"
+                  href="https://www.facebook.com/"
+                  target="_blank"
+                  data-interactive
+                >
+                  <div
+                    class="w-28.5 tab:w-37 flex items-center justify-center gap-3"
+                  >
+                    <img
+                      src="/icons/icon_facebook.svg"
+                      alt=""
+                      aria-hidden="true"
+                      class="size-10 tab:size-12"
+                    />
+                    <span class="">facebook</span>
+                  </div>
+                </a>
+              </li>
+              <li class=" ">
+                <a
+                  class="flex items-center justify-center w-72 tab:w-98 pc:w-104 h-10 tab:h-14 pc:h-16 mx-auto bg-dark font-bold text-lg tab:text-2xl desk:text-2xl-plus"
+                  href="https://www.t.me/"
+                  target="_blank"
+                  data-interactive
+                >
+                  <div
+                    class="w-28.5 tab:w-37 flex items-center justify-center gap-3"
+                  >
+                    <img
+                      src="/icons/icon_telegram.svg"
+                      alt=""
+                      aria-hidden="true"
+                      class="size-10 tab:size-12"
+                    />
+                    <span class="">telegram</span>
+                  </div>
+                </a>
+              </li>
+              <li class=" ">
+                <a
+                  class="flex items-center justify-center w-72 tab:w-98 pc:w-104 h-10 tab:h-14 pc:h-16 mx-auto bg-dark font-bold text-lg tab:text-2xl desk:text-2xl-plus"
+                  href="https://www.instagram.com/"
+                  target="_blank"
+                  data-interactive
+                >
+                  <div
+                    class="w-28.5 tab:w-37 flex items-center justify-center gap-3"
+                  >
+                    <img
+                      src="/icons/icon_instagram.svg"
+                      alt=""
+                      aria-hidden="true"
+                      class="size-10 tab:size-12"
+                    />
+                    <span class="">instagram</span>
+                  </div>
+                </a>
+              </li>
+              <li class=" ">
+                <a
+                  class="flex items-center justify-center w-72 tab:w-98 pc:w-104 h-10 tab:h-14 pc:h-16 mx-auto bg-dark font-bold text-lg tab:text-2xl desk:text-2xl-plus"
+                  href="https://www.gmail.com/"
+                  target="_blank"
+                  data-interactive
+                >
+                  <div
+                    class="w-28.5 tab:w-37 flex items-center justify-center gap-3"
+                  >
+                    <img
+                      src="/icons/icon_email.svg"
+                      alt=""
+                      aria-hidden="true"
+                      class="size-10 tab:size-12"
+                    />
+                    <span class="">e-mail</span>
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <script type="module" src="/src/js/main.js"></script>
   </body>
 </html>
