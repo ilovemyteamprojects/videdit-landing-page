@@ -30,9 +30,7 @@ export default function heroSectionData() {
         },
 
         trigger(e) {
-            console.log(e.type, this.show)
             this.show = true;
-            console.log(this.show)
             if (e.type === 'wheel' || e.type === 'touchstart') {
                 setTimeout(() => {
                     document.body.style.overflow = ""
