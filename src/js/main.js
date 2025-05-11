@@ -1,4 +1,6 @@
 import AlpineI18n from 'alpinejs-i18n';
+import component from 'alpinejs-component'
+import { focus } from '@alpinejs/focus';
 import Alpine from 'alpinejs';
 import { messages } from './messages';
 import heroTitleHandler from "./dataHandlers/heroTitle"
@@ -11,6 +13,8 @@ document.addEventListener('alpine-i18n:ready', function () {
 });
 
 Alpine.plugin(AlpineI18n);
+Alpine.plugin(component);
+Alpine.plugin(focus);
 
 document.addEventListener("alpine-i18n:locale-change", function () {
     localStorage.setItem("locale", window.AlpineI18n.locale);
