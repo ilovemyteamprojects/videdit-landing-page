@@ -89,7 +89,7 @@
 
         <div id="tools" class="hidden pc:flex gap-6 pr-3">
           <button
-            class="tracking-wider uppercase flex h-6 px-2 my-auto hover:cursor-pointer"
+            class="tracking-wider uppercase flex h-6 px-2 my-auto hover:cursor-pointer text-lg"
             @click="$locale($locale() === 'ua' ? 'eng' : 'ua')"
             :aria-label="$locale() === 'ua' ? 'Switch to English' : 'Переключити на українську'"
             data-interactive
@@ -116,7 +116,7 @@
         </div>
 
         <button
-          class="tracking-wider uppercase pc:hidden flex h-6 px-2 my-auto hover:cursor-pointer"
+          class="tracking-wider uppercase pc:hidden flex h-6 px-2 my-auto hover:cursor-pointer text-lg"
           @click="$locale($locale() === 'ua' ? 'eng' : 'ua')"
           :aria-label="$locale() === 'ua' ? 'Switch to English' : 'Переключити на українську'"
           data-interactive
@@ -193,7 +193,7 @@
             </button>
 
             <button
-              class="tracking-wider uppercase pc:hidden flex h-6 px-2 my-auto hover:cursor-pointer"
+              class="tracking-wider uppercase pc:hidden flex h-6 px-2 my-auto hover:cursor-pointer text-lg"
               @click="$locale($locale() === 'ua' ? 'eng' : 'ua')"
               :aria-label="$locale() === 'ua' ? 'Switch to English' : 'Переключити на українську'"
               data-interactive
@@ -236,7 +236,7 @@
           <ul class="mx-auto mt-9 flex flex-col gap-5">
             <li class="tab:ml-2">
               <a
-                class="w-72 h-10 tab:h-14 desk:h-16 flex items-center justify-center bg-dark font-alumni font-bold text-lg tab:text-2xl desk:text-2xl-plus border border-transparent hover:border-light"
+                class="w-72 h-10 tab:h-14 desk:h-16 flex items-center justify-center bg-dark font-alumni font-bold text-lg border border-transparent hover:border-light"
                 href="#services"
                 x-text="$t('header.services')"
                 @click="isMenuOpen = false"
@@ -246,7 +246,7 @@
             </li>
             <li class="tab:ml-2">
               <a
-                class="w-72 h-10 tab:h-14 desk:h-16 flex items-center justify-center bg-dark font-alumni font-bold text-lg tab:text-2xl desk:text-2xl-plus border border-transparent hover:border-light"
+                class="w-72 h-10 tab:h-14 desk:h-16 flex items-center justify-center bg-dark font-alumni font-bold text-lg border border-transparent hover:border-light"
                 href="#portfolio"
                 x-text="$t('header.portfolio')"
                 @click="isMenuOpen = false"
@@ -256,7 +256,7 @@
             </li>
             <li class="tab:ml-2">
               <a
-                class="w-72 h-10 tab:h-14 desk:h-16 flex items-center justify-center bg-dark font-alumni font-bold text-lg tab:text-2xl desk:text-2xl-plus border border-transparent hover:border-light"
+                class="w-72 h-10 tab:h-14 desk:h-16 flex items-center justify-center bg-dark font-alumni font-bold text-lg border border-transparent hover:border-light"
                 href="#about"
                 x-text="$t('header.aboutMe')"
                 @click="isMenuOpen = false"
@@ -266,7 +266,7 @@
             </li>
             <li class="tab:ml-2">
               <button
-                class="w-72 h-10 tab:h-14 desk:h-16 uppercase flex items-center justify-center btn-blur font-alumni font-bold text-lg tab:text-2xl desk:text-2xl-plus cursor-pointer"
+                class="w-72 h-10 tab:h-14 desk:h-16 uppercase flex items-center justify-center btn-blur font-alumni font-bold text-lg cursor-pointer"
                 x-text="$t('header.contacts')"
                 @click="isMenuOpen = false; $store.modal.openContactModal()"
                 data-interactive
@@ -432,6 +432,7 @@
     <!-- Contact modal -->
     <div
       x-show="$store.modal.isContactModalOpen"
+      x-trap="$store.modal.isContactModalOpen"
       x-cloak
       class="relative z-50"
       x-data="{close() {$store.modal.closeContactModal()}}"
@@ -490,16 +491,14 @@
             <ul
               class="flex flex-col gap-5 text-white text-lg font-bold font-alumni uppercase"
             >
-              <li class=" ">
+              <li class="border focus:border-3 border-red-700">
                 <a
                   class="flex items-center justify-center w-72 tab:w-98 pc:w-104 h-10 tab:h-14 pc:h-16 mx-auto bg-dark font-bold text-lg tab:text-2xl desk:text-2xl-plus"
                   href="https://www.facebook.com/"
                   target="_blank"
                   data-interactive
                 >
-                  <div
-                    class="w-28.5 tab:w-37 flex items-center justify-center gap-3"
-                  >
+                  <div class="w-28.5 tab:w-37 flex items-center gap-3">
                     <img
                       src="/icons/icon_facebook.svg"
                       alt=""
@@ -517,9 +516,7 @@
                   target="_blank"
                   data-interactive
                 >
-                  <div
-                    class="w-28.5 tab:w-37 flex items-center justify-center gap-3"
-                  >
+                  <div class="w-28.5 tab:w-37 flex items-center gap-3">
                     <img
                       src="/icons/icon_telegram.svg"
                       alt=""
@@ -537,9 +534,7 @@
                   target="_blank"
                   data-interactive
                 >
-                  <div
-                    class="w-28.5 tab:w-37 flex items-center justify-center gap-3"
-                  >
+                  <div class="w-28.5 tab:w-37 flex items-center gap-3">
                     <img
                       src="/icons/icon_instagram.svg"
                       alt=""
@@ -557,9 +552,7 @@
                   target="_blank"
                   data-interactive
                 >
-                  <div
-                    class="w-28.5 tab:w-37 flex items-center justify-center gap-3"
-                  >
+                  <div class="w-28.5 tab:w-37 flex items-center gap-3">
                     <img
                       src="/icons/icon_email.svg"
                       alt=""
