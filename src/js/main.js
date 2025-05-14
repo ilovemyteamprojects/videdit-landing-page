@@ -29,7 +29,12 @@ document.addEventListener('alpine:init', () => {
             this.isContactModalOpen = !this.isContactModalOpen;
         }
     });
+
+    Alpine.store('title', {
+        isTitleShown: true
+    });
 });
+
 
 document.addEventListener("alpine-i18n:locale-change", function () {
     localStorage.setItem("locale", window.AlpineI18n.locale);

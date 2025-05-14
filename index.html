@@ -282,9 +282,12 @@
       <div
         x-ref="title"
         x-data="heroTitle"
+        x-show="$store.title.isTitleShown"
+        x-cloak
         x-effect="isTitleTriggered = show; calcHeroCardOffset()"
         class="p-0 absolute z-[3] min-w-1 leading-tight text-[4rem]"
         :style="styles"
+        @transitionend="$store.title.isTitleShown = false"
       >
         <p
           x-text="$t('hero.title')"
@@ -302,6 +305,12 @@
         x-effect="show ? $refs.heroContainer.style.opacity = '100%' : null"
         class="transition-all ease-in duration-500 flex-col z-[2] absolute bottom-15 tab:bottom-10 pc:bottom-[8.5%] left-[calc((100%-288px)/2)] tab:left-6 pc:left-10 desk:left-16 w-72 tab:w-111 pc:w-150"
       >
+        <p
+          x-cloak
+          x-show="!$store.title.isTitleShown "
+          x-text="$t('hero.title')"
+          class="uppercase p-0 m-0 font-bold font-alumni text-[2rem] tab:text-[3rem] pc:text-[4rem] desk:text-[5rem] leading-tight text-white text-nowrap"
+        ></p>
         <p
           x-text="$t('hero.description')"
           class="tab:w-4/5 pc:w-auto mb-8 tab:mb-14 desk:mb-15 pc:leading-8 text-base tab:text-xl pc:text-2xl desk:text-2xl-plus"

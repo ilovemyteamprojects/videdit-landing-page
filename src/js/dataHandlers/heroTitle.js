@@ -2,8 +2,10 @@
 export default function heroTitle() {
     return {
         isTitleTriggered: false,
+        isTitleShown: true,
         currentBreakpoint: 'mob',
         calculatedTop: 0,
+
 
         updateBreakpoint() {
             const width = window.innerWidth;
