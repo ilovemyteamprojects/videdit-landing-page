@@ -5,6 +5,7 @@ import Alpine from 'alpinejs';
 import { messages } from './messages';
 import heroTitleHandler from "./dataHandlers/heroTitle"
 import heroSectionHandler from './dataHandlers/heroSection';
+import faqSectionHandler from './dataHandlers/faqSection';
 
 let locale = localStorage.getItem("locale") || 'ua';
 
@@ -42,5 +43,6 @@ document.addEventListener("alpine-i18n:locale-change", function () {
 
 Alpine.data('heroSectionData', heroSectionHandler);
 Alpine.data("heroTitle", heroTitleHandler)
+Alpine.data("faqSection", faqSectionHandler)
 
 Alpine.start();
