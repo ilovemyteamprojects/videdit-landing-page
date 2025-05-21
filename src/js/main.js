@@ -5,7 +5,10 @@ import Alpine from 'alpinejs';
 import { messages } from './messages';
 import heroTitleHandler from "./dataHandlers/heroTitle"
 import heroSectionHandler from './dataHandlers/heroSection';
+import gsap from 'gsap';
+import { SplitText } from 'gsap/SplitText';
 
+// Alpine.js
 let locale = localStorage.getItem("locale") || 'ua';
 
 document.addEventListener('alpine-i18n:ready', function () {
@@ -44,3 +47,31 @@ Alpine.data('heroSectionData', heroSectionHandler);
 Alpine.data("heroTitle", heroTitleHandler)
 
 Alpine.start();
+
+// GSAP
+document.fonts.ready.then(() => {
+    gsap.registerPlugin(SplitText)
+    document.querySelectorAll('.barrel-animation').forEach((el) => {
+        const split = new SplitText(el, { type: 'chars' })
+        const chars = split.chars
+
+        el.addEventListener("mouseenter", () => {
+            chars.forEach((char, i) => {
+                const tl = gsap.timeline();
+                tl.to(char, {
+                    yPercent: -100,
+                    duration: 0.3,
+                    opacity: 0,
+                    delay: i * 0.05,
+                    ease: "power1.in",
+                }).set(char, { yPercent: 100 })
+                    .to(char, {
+                        yPercent: 0,
+                        opacity: 1,
+                        duration: 0.3,
+                        ease: "power1.out",
+                    });
+            });
+        });
+    })
+})
