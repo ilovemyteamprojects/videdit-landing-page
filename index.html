@@ -325,13 +325,14 @@
           >
             Замовити монтаж
           </button>
-          <a
-            class="barrel-animation w-72 h-10 tab:h-14 desk:h-16 flex items-center justify-center btn-blur font-alumni font-bold text-lg tab:text-2xl desk:text-2xl-plus"
-            href="#portfolio"
+          <button
+            class="barrel-animation w-72 h-10 tab:h-14 desk:h-16 cursor-pointer btn-blur font-alumni font-bold text-lg tab:text-2xl desk:text-2xl-plus"
+            @click="window.location.href = '#portfolio'"
             x-text="$t('hero.portfolio')"
             data-interactive
-            >Дивитись роботи</a
           >
+            Дивитись роботи
+          </button>
         </div>
       </div>
 

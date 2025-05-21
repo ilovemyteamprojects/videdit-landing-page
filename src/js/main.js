@@ -49,29 +49,57 @@ Alpine.data("heroTitle", heroTitleHandler)
 Alpine.start();
 
 // GSAP
-document.fonts.ready.then(() => {
-    gsap.registerPlugin(SplitText)
-    document.querySelectorAll('.barrel-animation').forEach((el) => {
-        const split = new SplitText(el, { type: 'chars' })
-        const chars = split.chars
+gsap.registerPlugin(SplitText);
 
-        el.addEventListener("mouseenter", () => {
-            chars.forEach((char, i) => {
-                const tl = gsap.timeline();
-                tl.to(char, {
-                    yPercent: -100,
-                    duration: 0.3,
-                    opacity: 0,
-                    delay: i * 0.05,
-                    ease: "power1.in",
-                }).set(char, { yPercent: 100 })
-                    .to(char, {
-                        yPercent: 0,
-                        opacity: 1,
+let splitInstances = new Map(); // store references for cleanup
+
+function setupBarrelAnimation() {
+    document.querySelectorAll('.barrel-animation').forEach((el) => {
+
+        if (splitInstances.has(el)) {
+            splitInstances.get(el).revert();
+            splitInstances.delete(el);
+        }
+
+        el.style.overflow = "hidden";
+
+        setTimeout(() => {
+            const split = new SplitText(el, { type: 'chars' });
+            splitInstances.set(el, split);
+            const chars = split.chars;
+
+            const animate = () => {
+                chars.forEach((char, i) => {
+                    const tl = gsap.timeline();
+                    tl.to(char, {
+                        yPercent: -100,
                         duration: 0.3,
-                        ease: "power1.out",
-                    });
-            });
-        });
-    })
-})
+                        opacity: 0,
+                        delay: i * 0.05,
+                        ease: "power1.in",
+                    })
+                        .set(char, { yPercent: 100 })
+                        .to(char, {
+                            yPercent: 0,
+                            opacity: 1,
+                            duration: 0.3,
+                            ease: "power1.out",
+                        });
+                });
+            };
+
+            el.addEventListener("mouseenter", animate);
+            el.addEventListener("focus", animate);
+        }, 10);
+    });
+}
+
+// wait for fonts
+document.fonts.ready.then(() => {
+    setupBarrelAnimation();
+});
+
+// Re-run on locale change
+document.addEventListener("alpine-i18n:locale-change", () => {
+    setupBarrelAnimation();
+});
