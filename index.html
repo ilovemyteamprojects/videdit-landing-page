@@ -358,6 +358,473 @@
     </section>
 
     <main>
+      <!-- FAQ -->
+      <section
+        class="flex flex-col w-screen px-4 tab:px-6 pc:px-10 desk:px-16 pt-15 tab:pt-20 pc:pt-25 desk:pt-30"
+      >
+        <!-- head -->
+        <div class="flex items-center justify-between">
+          <svg
+            class="h-4 pc:h-4.5"
+            aria-hidden="true"
+            viewBox="0 0 65 18"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M8.91429 0H24.7619L15.8476 18H0L8.91429 0Z"
+              fill="#1A1A1A"
+            />
+            <path
+              d="M28.7238 0H44.5714L35.6571 18H19.8095L28.7238 0Z"
+              fill="#1A1A1A"
+            />
+            <path
+              d="M48.5333 0H64.381L55.4667 18H39.619L48.5333 0Z"
+              fill="#1A1A1A"
+            />
+          </svg>
+          <p class="text-base pc:text-lg leading-0">FAQ</p>
+          <svg
+            class="h-4 pc:h-4.5"
+            aria-hidden="true"
+            viewBox="0 0 65 18"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M8.91429 0H24.7619L15.8476 18H0L8.91429 0Z"
+              fill="#1A1A1A"
+            />
+            <path
+              d="M28.7238 0H44.5714L35.6571 18H19.8095L28.7238 0Z"
+              fill="#1A1A1A"
+            />
+            <path
+              d="M48.5333 0H64.381L55.4667 18H39.619L48.5333 0Z"
+              fill="#1A1A1A"
+            />
+          </svg>
+        </div>
+        <!-- title -->
+        <h2
+          x-data
+          x-text="$t('faqSection.title')"
+          class="pt-4 pb-6 tab:pb-10 mx-auto font-alumni font-bold text-thirty-two tab:text-fourty-eight pc:text-sixty-four"
+        >
+          Поширені питання
+        </h2>
+        <!-- questions -->
+        <!-- questions mob-->
+        <ul class="tab:hidden flex flex-col border border-darker">
+          <li
+            x-data="{active: false}"
+            class="py-6 px-3 border-b border-darker last:border-none"
+            role="region"
+            aria-live="polite"
+            :aria-labelledby="'faq-q1'"
+          >
+            <button
+              class="float-right size-11 cursor-pointer"
+              @click="active = !active"
+              @click.outside="active = false"
+              :class="{'rotate-180': active}"
+              :aria-label="active ? $t('aria.closeAnswer') : undefined"
+            >
+              <svg
+                aria-hidden="true"
+                viewBox="0 0 50 50"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M15.5107 13.0476L34.6074 12.9537C35.8469 12.9322 36.8691 13.9196 36.8906 15.1591L36.9846 34.3929C35.4885 34.4188 36.1543 34.419 34.9149 34.4405C33.6754 34.462 34.7403 34.4318 32.4961 34.4707L32.4961 20.655L15.5886 38.1593L12.3597 35.0405L29.2672 17.5362L15.5886 17.5361C15.5626 16.04 15.5707 16.5313 15.5492 15.2919C15.5277 14.0524 15.5233 13.7957 15.5107 13.0476Z"
+                  fill="black"
+                />
+              </svg>
+            </button>
+            <h3
+              :id="'faq-q1'"
+              x-text="$t('faqSection.q1.question')"
+              class="text-base font-bold leading-[130%]"
+            ></h3>
+            <p
+              x-show="active"
+              x-cloak
+              x-transition
+              x-html="$t('faqSection.q1.answer')"
+              class="mt-3"
+            ></p>
+          </li>
+
+          <li
+            x-data="{active: false}"
+            class="py-6 px-3 border-b border-darker last:border-none"
+            role="region"
+            aria-live="polite"
+            :aria-labelledby="'faq-q2'"
+          >
+            <button
+              class="float-right size-11 cursor-pointer"
+              @click="active = !active"
+              @click.outside="active = false"
+              :class="{'rotate-180': active}"
+              :aria-label="active ? $t('aria.closeAnswer') : undefined"
+            >
+              <svg
+                aria-hidden="true"
+                viewBox="0 0 50 50"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M15.5107 13.0476L34.6074 12.9537C35.8469 12.9322 36.8691 13.9196 36.8906 15.1591L36.9846 34.3929C35.4885 34.4188 36.1543 34.419 34.9149 34.4405C33.6754 34.462 34.7403 34.4318 32.4961 34.4707L32.4961 20.655L15.5886 38.1593L12.3597 35.0405L29.2672 17.5362L15.5886 17.5361C15.5626 16.04 15.5707 16.5313 15.5492 15.2919C15.5277 14.0524 15.5233 13.7957 15.5107 13.0476Z"
+                  fill="black"
+                />
+              </svg>
+            </button>
+            <h3
+              :id="'faq-q2'"
+              x-text="$t('faqSection.q2.question')"
+              class="text-base font-bold leading-[130%]"
+            ></h3>
+            <p
+              x-show="active"
+              x-cloak
+              x-transition
+              x-html="$t('faqSection.q2.answer')"
+              class="mt-3"
+            ></p>
+          </li>
+
+          <li
+            x-data="{active: false}"
+            class="py-6 px-3 border-b border-darker last:border-none"
+            role="region"
+            aria-live="polite"
+            :aria-labelledby="'faq-q3'"
+          >
+            <button
+              class="float-right size-11 cursor-pointer"
+              @click="active = !active"
+              @click.outside="active = false"
+              :class="{'rotate-180': active}"
+              :aria-label="active ? $t('aria.closeAnswer') : undefined"
+            >
+              <svg
+                aria-hidden="true"
+                viewBox="0 0 50 50"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M15.5107 13.0476L34.6074 12.9537C35.8469 12.9322 36.8691 13.9196 36.8906 15.1591L36.9846 34.3929C35.4885 34.4188 36.1543 34.419 34.9149 34.4405C33.6754 34.462 34.7403 34.4318 32.4961 34.4707L32.4961 20.655L15.5886 38.1593L12.3597 35.0405L29.2672 17.5362L15.5886 17.5361C15.5626 16.04 15.5707 16.5313 15.5492 15.2919C15.5277 14.0524 15.5233 13.7957 15.5107 13.0476Z"
+                  fill="black"
+                />
+              </svg>
+            </button>
+            <h3
+              :id="'faq-q3'"
+              x-text="$t('faqSection.q3.question')"
+              class="text-base font-bold leading-[130%]"
+            ></h3>
+            <p
+              x-show="active"
+              x-cloak
+              x-transition
+              x-html="$t('faqSection.q3.answer')"
+              class="mt-3"
+            ></p>
+          </li>
+
+          <li
+            x-data="{active: false}"
+            class="py-6 px-3 border-b border-darker last:border-none"
+            role="region"
+            aria-live="polite"
+            :aria-labelledby="'faq-q4'"
+          >
+            <button
+              class="float-right size-11 cursor-pointer"
+              @click="active = !active"
+              @click.outside="active = false"
+              :class="{'rotate-180': active}"
+              :aria-label="active ? $t('aria.closeAnswer') : undefined"
+            >
+              <svg
+                aria-hidden="true"
+                viewBox="0 0 50 50"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M15.5107 13.0476L34.6074 12.9537C35.8469 12.9322 36.8691 13.9196 36.8906 15.1591L36.9846 34.3929C35.4885 34.4188 36.1543 34.419 34.9149 34.4405C33.6754 34.462 34.7403 34.4318 32.4961 34.4707L32.4961 20.655L15.5886 38.1593L12.3597 35.0405L29.2672 17.5362L15.5886 17.5361C15.5626 16.04 15.5707 16.5313 15.5492 15.2919C15.5277 14.0524 15.5233 13.7957 15.5107 13.0476Z"
+                  fill="black"
+                />
+              </svg>
+            </button>
+            <h3
+              :id="'faq-q4'"
+              x-text="$t('faqSection.q4.question')"
+              class="text-base font-bold leading-[130%]"
+            ></h3>
+            <p
+              x-show="active"
+              x-cloak
+              x-transition
+              x-html="$t('faqSection.q4.answer')"
+              class="mt-3"
+            ></p>
+          </li>
+
+          <li
+            x-data="{active: false}"
+            class="py-6 px-3 border-b border-darker last:border-none"
+            role="region"
+            aria-live="polite"
+            :aria-labelledby="'faq-q5'"
+          >
+            <button
+              class="float-right size-11 cursor-pointer"
+              @click="active = !active"
+              @click.outside="active = false"
+              :class="{'rotate-180': active}"
+              :aria-label="active ? $t('aria.closeAnswer') : undefined"
+            >
+              <svg
+                aria-hidden="true"
+                viewBox="0 0 50 50"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M15.5107 13.0476L34.6074 12.9537C35.8469 12.9322 36.8691 13.9196 36.8906 15.1591L36.9846 34.3929C35.4885 34.4188 36.1543 34.419 34.9149 34.4405C33.6754 34.462 34.7403 34.4318 32.4961 34.4707L32.4961 20.655L15.5886 38.1593L12.3597 35.0405L29.2672 17.5362L15.5886 17.5361C15.5626 16.04 15.5707 16.5313 15.5492 15.2919C15.5277 14.0524 15.5233 13.7957 15.5107 13.0476Z"
+                  fill="black"
+                />
+              </svg>
+            </button>
+            <h3
+              :id="'faq-q5'"
+              x-text="$t('faqSection.q5.question')"
+              class="text-base font-bold leading-[130%]"
+            ></h3>
+            <p
+              x-show="active"
+              x-cloak
+              x-transition
+              x-html="$t('faqSection.q5.answer')"
+              class="mt-3"
+            ></p>
+          </li>
+        </ul>
+
+        <!-- questions non-mob-->
+        <ul
+          x-data="faqSection"
+          class="hidden tab:grid gap-2 grid-cols-[repeat(auto-fit,minmax(218px,1fr))] desk:grid-cols-[repeat(auto-fit,minmax(250px,1fr))]"
+        >
+          <!-- selected question -->
+          <li
+            class="bg-notWhite p-4 aspect-square col-span-2 row-span-2"
+            x-show="activeItem"
+            x-cloak
+          >
+            <button
+              class="float-right size-12.5 cursor-pointer rotate-180"
+              :aria-label="$t('aria.closeAnswer')"
+              x-ref="closeFaqButton"
+              @click="activeItem = null"
+            >
+              <svg
+                aria-hidden="true"
+                viewBox="0 0 50 50"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M15.5107 13.0476L34.6074 12.9537C35.8469 12.9322 36.8691 13.9196 36.8906 15.1591L36.9846 34.3929C35.4885 34.4188 36.1543 34.419 34.9149 34.4405C33.6754 34.462 34.7403 34.4318 32.4961 34.4707L32.4961 20.655L15.5886 38.1593L12.3597 35.0405L29.2672 17.5362L15.5886 17.5361C15.5626 16.04 15.5707 16.5313 15.5492 15.2919C15.5277 14.0524 15.5233 13.7957 15.5107 13.0476Z"
+                  fill="black"
+                />
+              </svg>
+            </button>
+
+            <h3
+              x-html="headerTitle"
+              class="text-xl desk:text-2xl font-bold leading-[130%]"
+            ></h3>
+            <p x-html="headerText" class="mt-3 text-lg desk:text-xl"></p>
+          </li>
+
+          <!-- all questions -->
+          <li x-show="activeItem !== 1" x-cloak class="aspect-square bg-black">
+            <img src="faq/1.jpg" />
+          </li>
+          <li
+            class="aspect-square flex flex-col justify-between border border-darker p-3 font-bold text-xl desk:text-2xl leading-[130%] cursor-pointer"
+            x-show="activeItem !== 1"
+            :aria-hidden="activeItem"
+            x-cloak
+            @click="activate(1)"
+          >
+            <p :id="'faq-question-1'" x-html="$t('faqSection.q1.question')"></p>
+            <button
+              class="size-11 desk:size-12.5 ml-auto cursor-pointer"
+              :aria-labelledby="'faq-question-1'"
+              @click="activeItem = null"
+            >
+              <svg
+                viewBox="0 0 50 50"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M15.5107 13.0476L34.6074 12.9537C35.8469 12.9322 36.8691 13.9196 36.8906 15.1591L36.9846 34.3929C35.4885 34.4188 36.1543 34.419 34.9149 34.4405C33.6754 34.462 34.7403 34.4318 32.4961 34.4707L32.4961 20.655L15.5886 38.1593L12.3597 35.0405L29.2672 17.5362L15.5886 17.5361C15.5626 16.04 15.5707 16.5313 15.5492 15.2919C15.5277 14.0524 15.5233 13.7957 15.5107 13.0476Z"
+                  fill="black"
+                />
+              </svg>
+            </button>
+          </li>
+
+          <li x-show="activeItem !== 2" x-cloak class="aspect-square bg-black">
+            <img src="faq/2.jpg" />
+          </li>
+          <li
+            class="aspect-square flex flex-col justify-between border border-darker p-3 font-bold text-xl desk:text-2xl leading-[130%] cursor-pointer"
+            x-show="activeItem !== 2"
+            :aria-hidden="activeItem"
+            x-cloak
+            @click="activate(2)"
+          >
+            <p :id="'faq-question-2'" x-html="$t('faqSection.q2.question')"></p>
+            <button
+              class="size-11 desk:size-12.5 ml-auto cursor-pointer"
+              :aria-labelledby="'faq-question-2'"
+              @click="activeItem = null"
+            >
+              <svg
+                viewBox="0 0 50 50"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M15.5107 13.0476L34.6074 12.9537C35.8469 12.9322 36.8691 13.9196 36.8906 15.1591L36.9846 34.3929C35.4885 34.4188 36.1543 34.419 34.9149 34.4405C33.6754 34.462 34.7403 34.4318 32.4961 34.4707L32.4961 20.655L15.5886 38.1593L12.3597 35.0405L29.2672 17.5362L15.5886 17.5361C15.5626 16.04 15.5707 16.5313 15.5492 15.2919C15.5277 14.0524 15.5233 13.7957 15.5107 13.0476Z"
+                  fill="black"
+                />
+              </svg>
+            </button>
+          </li>
+
+          <li x-show="activeItem !== 3" x-cloak class="aspect-square bg-black">
+            <img src="faq/3.jpg" />
+          </li>
+          <li
+            class="aspect-square flex flex-col justify-between border border-darker p-3 font-bold text-xl desk:text-2xl leading-[130%] cursor-pointer"
+            x-show="activeItem !== 3"
+            :aria-hidden="activeItem"
+            x-cloak
+            @click="activate(3)"
+          >
+            <p :id="'faq-question-3'" x-html="$t('faqSection.q3.question')"></p>
+            <button
+              class="size-11 desk:size-12.5 ml-auto cursor-pointer"
+              :aria-labelledby="'faq-question-3'"
+              @click="activeItem = null"
+            >
+              <svg
+                viewBox="0 0 50 50"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M15.5107 13.0476L34.6074 12.9537C35.8469 12.9322 36.8691 13.9196 36.8906 15.1591L36.9846 34.3929C35.4885 34.4188 36.1543 34.419 34.9149 34.4405C33.6754 34.462 34.7403 34.4318 32.4961 34.4707L32.4961 20.655L15.5886 38.1593L12.3597 35.0405L29.2672 17.5362L15.5886 17.5361C15.5626 16.04 15.5707 16.5313 15.5492 15.2919C15.5277 14.0524 15.5233 13.7957 15.5107 13.0476Z"
+                  fill="black"
+                />
+              </svg>
+            </button>
+          </li>
+
+          <li x-show="activeItem !== 4" x-cloak class="aspect-square bg-black">
+            <img src="faq/4.jpg" />
+          </li>
+          <li
+            class="aspect-square flex flex-col justify-between border border-darker p-3 font-bold text-xl desk:text-2xl leading-[130%] cursor-pointer"
+            x-show="activeItem !== 4"
+            :aria-hidden="activeItem"
+            x-cloak
+            @click="activate(4)"
+          >
+            <p :id="'faq-question-4'" x-html="$t('faqSection.q4.question')"></p>
+            <button
+              class="size-11 desk:size-12.5 ml-auto cursor-pointer"
+              :aria-labelledby="'faq-question-4'"
+              @click="activeItem = null"
+            >
+              <svg
+                viewBox="0 0 50 50"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M15.5107 13.0476L34.6074 12.9537C35.8469 12.9322 36.8691 13.9196 36.8906 15.1591L36.9846 34.3929C35.4885 34.4188 36.1543 34.419 34.9149 34.4405C33.6754 34.462 34.7403 34.4318 32.4961 34.4707L32.4961 20.655L15.5886 38.1593L12.3597 35.0405L29.2672 17.5362L15.5886 17.5361C15.5626 16.04 15.5707 16.5313 15.5492 15.2919C15.5277 14.0524 15.5233 13.7957 15.5107 13.0476Z"
+                  fill="black"
+                />
+              </svg>
+            </button>
+          </li>
+
+          <li x-show="activeItem !== 5" x-cloak class="aspect-square bg-black">
+            <img src="faq/5.jpg" />
+          </li>
+          <li
+            class="aspect-square flex flex-col justify-between border border-darker p-3 font-bold text-xl desk:text-2xl leading-[130%] cursor-pointer"
+            x-show="activeItem !== 5"
+            :aria-hidden="activeItem"
+            x-cloak
+            @click="activate(5)"
+          >
+            <p :id="'faq-question-5'" x-html="$t('faqSection.q5.question')"></p>
+            <button
+              class="size-11 desk:size-12.5 ml-auto cursor-pointer"
+              :aria-labelledby="'faq-question-5'"
+              @click="activeItem = null"
+            >
+              <svg
+                viewBox="0 0 50 50"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M15.5107 13.0476L34.6074 12.9537C35.8469 12.9322 36.8691 13.9196 36.8906 15.1591L36.9846 34.3929C35.4885 34.4188 36.1543 34.419 34.9149 34.4405C33.6754 34.462 34.7403 34.4318 32.4961 34.4707L32.4961 20.655L15.5886 38.1593L12.3597 35.0405L29.2672 17.5362L15.5886 17.5361C15.5626 16.04 15.5707 16.5313 15.5492 15.2919C15.5277 14.0524 15.5233 13.7957 15.5107 13.0476Z"
+                  fill="black"
+                />
+              </svg>
+            </button>
+          </li>
+        </ul>
+      </section>
+
       <section
         x-data
         id="cardSection"
