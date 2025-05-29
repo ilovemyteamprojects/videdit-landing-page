@@ -356,10 +356,74 @@
         />
       </button>
     </section>
-
     <main>
+      <!-- motivation -->
+      <section id="motivationSecion" class="overflow-hidden w-screen">
+        <div x-data class="mt-15 mx-3 tab:mt-20 tab:mx-6 flex justify-between">
+          <h1
+            class="font-alumni font-bold w-full tab:w-96 pc:w-162 leading-none text-center tab:text-left text-[32px] tab:text-[48px] pc:text-[64px]"
+            x-text="$t('motivationSection.title')"
+          ></h1>
+
+          <button
+            class="hidden tab:block barrel-animation cursor-pointer w-72 h-10 tab:h-14 desk:h-16 bg-dark font-alumni font-bold text-white text-lg tab:text-2xl desk:text-2xl-plus"
+            x-text="$t('hero.order')"
+            @click="$store.modal.openContactModal()"
+            data-interactive
+          >
+            Замовити монтаж
+          </button>
+        </div>
+        <div
+          x-data="{ cards: [...$t('motivationSection.args')] }"
+          class="grid pc:hidden gap-6 mt-10 mb-14 tab:mb-20 mx-6 grid-cols-1 tab:grid-cols-2"
+        >
+          <template x-for="(item, index) in cards" :key="index">
+            <x-component
+              url="/src/templates/motivationCard.html"
+              x-data="{ item, index }"
+              :id="item"
+              class="relative max-w-130 mx-auto overflow-hidden"
+            ></x-component>
+          </template>
+          <button
+            class="mx-auto mt-4 tab:hidden barrel-animation cursor-pointer w-full max-w-72 h-10 bg-dark font-alumni font-bold text-white"
+            x-text="$t('hero.order')"
+            @click="$store.modal.openContactModal()"
+            data-interactive
+          >
+            Замовити монтаж
+          </button>
+        </div>
+
+        <div
+          id="carousel"
+          class="hidden pc:flex w-fit mt-10 mb-30 gap-10"
+          x-data="{ cards: [...$t('motivationSection.args')] }"
+          x-effect="cards = [...$t('motivationSection.args')]; $locale"
+        >
+          <div id="dummy" class="w-[50dvw]"></div>
+
+          <template x-for="(item, index) in cards" :key="index">
+            <x-component
+              url="/src/templates/motivationCard.html"
+              x-data="{ item, index }"
+              :id="item"
+              class="relative w-130 carousel-card select-none cursor-grab active:cursor-grabbing"
+            ></x-component>
+          </template>
+        </div>
+      </section>
+
+      <section class="w-full h-10 bg-slate-500">
+        <h1 class="font-alumni font-bold text-white">
+          Тут буде ще одна секція. Додано для наглядності відступів
+        </h1>
+      </section>
+
       <!-- FAQ -->
       <section
+        id="faqSection"
         class="flex flex-col w-screen px-4 tab:px-6 pc:px-10 desk:px-16 pt-15 tab:pt-20 pc:pt-25 desk:pt-30"
       >
         <!-- head -->
