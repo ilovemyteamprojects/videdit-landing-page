@@ -380,7 +380,7 @@
         >
           <template x-for="(item, index) in cards" :key="index">
             <x-component
-              url="/src/templates/motivationCard.html"
+              url="/templates/motivationCard.html"
               x-data="{ item, index }"
               :id="item"
               class="relative max-w-130 mx-auto overflow-hidden"
@@ -406,7 +406,7 @@
 
           <template x-for="(item, index) in cards" :key="index">
             <x-component
-              url="/src/templates/motivationCard.html"
+              url="/templates/motivationCard.html"
               x-data="{ item, index }"
               :id="item"
               class="relative w-130 carousel-card select-none cursor-grab active:cursor-grabbing"
@@ -962,7 +962,7 @@
       >
         <template x-for="card in cards">
           <x-component
-            url="/src/templates/card.html"
+            url="/templates/card.html"
             x-data="{ item: card }"
             :id="card.id"
           ></x-component>
