@@ -13,6 +13,7 @@
   --color-dark: #323232;
   --color-darker: #1a1a1a;
   --color-light: #d3d3d3;
+  --color-backup: oklch(0.723 0.219 149.579);
 
   --breakpoint-tab: 768px;
   --breakpoint-pc: 1280px;

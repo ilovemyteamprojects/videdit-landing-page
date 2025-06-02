@@ -1,17 +1,31 @@
 export default function faqSectionData() {
     return {
         activeItem: null,
-        headerTitle: '',
-        headerText: '',
+        width: "100px",
+
+        init() {
+            const updateWidth = () => {
+                if (this.$refs.cell) {
+                    this.width = `${(this.$refs.cell.offsetWidth * 2) + 8}px`;
+                }
+            };
+
+            this.resizeObserver = new ResizeObserver(updateWidth);
+            this.resizeObserver.observe(this.$refs.cell);
+
+            this.$watch('activeItem', value => {
+                if (!value && this.resizeObserver) {
+                    this.resizeObserver.disconnect();
+                }
+            });
+
+            updateWidth();
+        },
 
         activate(id) {
-            const q = `faqSection.q${id}`
-            const { question, answer } = window.AlpineI18n.t(q);
-            this.headerTitle = question;
-            this.headerText = answer;
             this.activeItem = (this.activeItem === id ? null : id);
-            this.$nextTick(() => { this.$refs.closeFaqButton.focus() })
-        }
 
+            this.width = `${(this.$refs.cell.offsetWidth * 2) + 8}px`
+        },
     }
 }
