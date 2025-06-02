@@ -11,189 +11,87 @@
   <body
     class="bg-green-500 font-ruda flex flex-col items-center justify-center overflow-x-hidden min-h-screen"
   >
-    <section
-      id="heroSection"
-      x-ref="heroSection"
-      x-data="heroSectionData"
-      class="relative flex flex-col w-screen h-[100dvh] text-white bg-black"
-      @click="pauseVideo"
-    >
-      <video
-        x-ref="headerVideo"
-        id="bgVideo"
-        muted
-        autoplay
-        loop
-        playsinline
-        class="size-full object-cover brightness-65"
+    <main>
+      <!-- header/hero -->
+      <section
+        id="heroSection"
+        x-ref="heroSection"
+        x-data="heroSectionData"
+        class="relative flex flex-col w-screen h-[100dvh] text-white bg-black"
+        @click="pauseVideo"
       >
-        <source src="HeaderVideo.webm" type="video/webm" />
-        <source src="HeaderVideo.mp4" type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
-
-      <!-- header -->
-      <header
-        x-data="{isMenuOpen: false, isKeyboardNavigationUsed: false}"
-        x-cloak
-        x-show="show"
-        x-transition.duration.500ms
-        class="absolute top-0 flex flex-row justify-between w-full h-20 pc:h-25 px-4 tab:px-6 pc:px-10 desk:px-15 bg-black/60 uppercase"
-      >
-        <a
-          href="#heroSection"
-          class="cursor-pointer my-auto"
-          :aria-label="$locale() !== 'ua' ? 'to top' : 'вгору'"
-          data-interactive
+        <video
+          x-ref="headerVideo"
+          id="bgVideo"
+          muted
+          autoplay
+          loop
+          playsinline
+          class="size-full object-cover brightness-65"
         >
-          <img
-            id="logo"
-            class="size-11 tab:size-16 pc:size-20"
-            src="/logo.svg"
-            alt="logo"
-            data-interactive
-          />
-        </a>
+          <source src="HeaderVideo.webm" type="video/webm" />
+          <source src="HeaderVideo.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
 
-        <nav class="my-auto hidden pc:flex">
-          <ul class="flex gap-10">
-            <li>
-              <a
-                class="hover:underline text-white text-lg font-ruda"
-                href="#services"
-                x-text="$t('header.services')"
-                data-interactive
-                >Послуги</a
-              >
-            </li>
-            <li>
-              <a
-                class="hover:underline text-white text-lg font-ruda"
-                href="#portfolio"
-                x-text="$t('header.portfolio')"
-                data-interactive
-                >Портфоліо</a
-              >
-            </li>
-            <li>
-              <a
-                class="hover:underline text-white text-lg font-ruda"
-                href="#about"
-                x-text="$t('header.aboutMe')"
-                data-interactive
-                >Про мене</a
-              >
-            </li>
-          </ul>
-        </nav>
-
-        <div id="tools" class="hidden pc:flex gap-6 pr-3">
-          <button
-            class="tracking-wider uppercase flex h-6 px-2 my-auto hover:cursor-pointer text-lg"
-            @click="$locale($locale() === 'ua' ? 'eng' : 'ua')"
-            :aria-label="$locale() === 'ua' ? 'Switch to English' : 'Переключити на українську'"
-            data-interactive
-          >
-            <span
-              data-interactive
-              :class="$locale() === 'ua' ? 'text-white hover:underline' : 'text-white/60 hover:underline'"
-              >ua</span
-            >|<span
-              data-interactive
-              :class="$locale() === 'eng' ? 'text-white hover:underline' : 'text-white/60 hover:underline'"
-              >eng</span
-            >
-          </button>
-          <button
-            id="contactsButton"
-            class="barrel-animation h-10 w-22 bg-dark my-auto uppercase text-white text-lg font-bold font-alumni hover:cursor-pointer"
-            x-text="$t('header.contacts')"
-            @click="$store.modal.openContactModal()"
-            data-interactive
-          >
-            Контакти
-          </button>
-        </div>
-
-        <button
-          class="tracking-wider uppercase pc:hidden flex h-6 px-2 my-auto hover:cursor-pointer text-lg"
-          @click="$locale($locale() === 'ua' ? 'eng' : 'ua')"
-          :aria-label="$locale() === 'ua' ? 'Switch to English' : 'Переключити на українську'"
-          data-interactive
-        >
-          <span
-            data-interactive
-            :class="$locale() === 'ua' ? 'text-white hover:underline' : 'text-white/60 hover:underline'"
-            >ua</span
-          >|<span
-            data-interactive
-            :class="$locale() === 'eng' ? 'text-white hover:underline' : 'text-white/60 hover:underline'"
-            >eng</span
-          >
-        </button>
-
-        <button
-          id="burgerMenu"
-          @click="isMenuOpen = true; $nextTick(() => $refs.closeNavButton.focus())"
-          @keydown.space="isKeyboardNavigationUsed = true"
-          @keydown.enter="isKeyboardNavigationUsed = true"
-          :aria-label="$locale() !== 'ua' ? 'open navigation menu' : 'відкрити навігаційне меню'"
-          x-show="!isMenuOpen"
-          x-ref="burger"
-          x-transition:enter="transition transform ease-in duration-500"
-          x-transition:enter-start="rotate-0 opacity-0"
-          x-transition:enter-end="rotate-360 opacity-100"
-          x-transition:leave="transition transform ease-out duration-500"
-          x-transition:leave-start="rotate-0 opacity-100"
-          x-transition:leave-end="-rotate-360 opacity-0"
-          class="my-auto rounded-full mr-[5px] pc:hidden cursor-pointer"
-          data-interactive
-        >
-          <img
-            data-interactive
-            src="/burger-button.svg"
-            alt="menu"
-            class="size-11"
-          />
-        </button>
-
-        <!-- mob menu -->
-        <div
-          id="mobileMenu"
-          @keydown.esc="$nextTick(()=> {if (isKeyboardNavigationUsed)$refs.burger.focus()}); isMenuOpen = false;"
+        <!-- header -->
+        <header
+          x-data="{isMenuOpen: false, isKeyboardNavigationUsed: false}"
           x-cloak
-          x-trap="isMenuOpen"
-          x-show="isMenuOpen"
-          x-transition:enter="transition-opacity duration-500 ease-in-out"
-          x-transition:enter-start="opacity-0"
-          x-transition:enter-end="opacity-100"
-          x-transition:leave="transition-opacity duration-500 ease-in-out"
-          x-transition:leave-start="opacity-100"
-          x-transition:leave-end="opacity-0"
-          class="pc:hidden flex flex-col w-[100dvw] h-[100dvh] bg-dark fixed z-10 top-0 right-0"
-          data-interactive
+          x-show="show"
+          x-transition.duration.500ms
+          class="absolute top-0 flex flex-row justify-between w-full h-20 pc:h-25 px-4 tab:px-6 pc:px-10 desk:px-15 bg-black/60 uppercase"
         >
-          <header
-            id="mobMenuHeader"
-            class="flex flex-row justify-between w-full h-20 pc:h-25 px-4 tab:px-6 pc:px-10 desk:px-15 uppercase"
+          <a
+            href="#heroSection"
+            class="cursor-pointer my-auto w-48"
+            :aria-label="$locale() !== 'ua' ? 'to top' : 'вгору'"
+            data-interactive
           >
-            <button
-              class="cursor-pointer my-auto"
-              aria-label="close menu"
-              @click="isMenuOpen = false"
+            <img
+              id="logo"
+              class="size-11 tab:size-16 pc:size-20"
+              src="/logo.svg"
+              alt="logo"
               data-interactive
-            >
-              <img
-                id="logo"
-                class="size-11 tab:size-16 pc:size-20"
-                src="/logo.svg"
-                alt="logo"
-                data-interactive
-              />
-            </button>
+            />
+          </a>
 
+          <nav class="my-auto hidden pc:flex">
+            <ul class="flex gap-10">
+              <li>
+                <a
+                  class="hover:underline text-white text-lg font-ruda"
+                  href="#services"
+                  x-text="$t('header.services')"
+                  data-interactive
+                  >Послуги</a
+                >
+              </li>
+              <li>
+                <a
+                  class="hover:underline text-white text-lg font-ruda"
+                  href="#portfolio"
+                  x-text="$t('header.portfolio')"
+                  data-interactive
+                  >Портфоліо</a
+                >
+              </li>
+              <li>
+                <a
+                  class="hover:underline text-white text-lg font-ruda"
+                  href="#about"
+                  x-text="$t('header.aboutMe')"
+                  data-interactive
+                  >Про мене</a
+                >
+              </li>
+            </ul>
+          </nav>
+
+          <div id="tools" class="hidden pc:flex gap-6 pr-3">
             <button
-              class="tracking-wider uppercase pc:hidden flex h-6 px-2 my-auto hover:cursor-pointer text-lg"
+              class="tracking-wider uppercase flex h-6 px-2 my-auto hover:cursor-pointer text-lg"
               @click="$locale($locale() === 'ua' ? 'eng' : 'ua')"
               :aria-label="$locale() === 'ua' ? 'Switch to English' : 'Переключити на українську'"
               data-interactive
@@ -208,158 +106,327 @@
                 >eng</span
               >
             </button>
-
             <button
-              id="closeMenu"
-              x-ref="closeNavButton"
-              @click="isMenuOpen = false; $nextTick(() => $refs.burger.focus())"
-              :aria-label="$locale() !== 'ua' ? 'close navigation menu' : 'закрити навігаційне меню'"
-              x-show="isMenuOpen"
-              x-transition:enter="transition transform ease-in duration-500"
-              x-transition:enter-start="rotate-0 opacity-0"
-              x-transition:enter-end="rotate-360 opacity-100"
-              x-transition:leave="transition transform ease-out duration-500"
-              x-transition:leave-start="rotate-0 opacity-100"
-              x-transition:leave-end="-rotate-360 opacity-0"
-              class="block my-auto rounded-full mr-[5px] pc:hidden cursor-pointer"
+              id="contactsButton"
+              class="barrel-animation h-10 w-22 bg-dark my-auto uppercase text-white text-lg font-bold font-alumni hover:cursor-pointer"
+              x-text="$t('header.contacts')"
+              @click="$store.modal.openContactModal()"
               data-interactive
             >
-              <img
-                data-interactive
-                src="/close-button.svg"
-                alt="menu"
-                class="size-11"
-              />
+              Контакти
             </button>
-          </header>
+          </div>
 
-          <ul class="mx-auto mt-9 flex flex-col gap-5">
-            <li class="tab:ml-2">
-              <a
-                class="w-72 h-10 tab:h-14 desk:h-16 flex items-center justify-center bg-dark font-alumni font-bold text-lg border border-transparent hover:border-light"
-                href="#services"
-                x-text="$t('header.services')"
-                @click="isMenuOpen = false"
-                data-interactive
-                >Послуги</a
-              >
-            </li>
-            <li class="tab:ml-2">
-              <a
-                class="w-72 h-10 tab:h-14 desk:h-16 flex items-center justify-center bg-dark font-alumni font-bold text-lg border border-transparent hover:border-light"
-                href="#portfolio"
-                x-text="$t('header.portfolio')"
-                @click="isMenuOpen = false"
-                data-interactive
-                >Портфоліо</a
-              >
-            </li>
-            <li class="tab:ml-2">
-              <a
-                class="w-72 h-10 tab:h-14 desk:h-16 flex items-center justify-center bg-dark font-alumni font-bold text-lg border border-transparent hover:border-light"
-                href="#about"
-                x-text="$t('header.aboutMe')"
-                @click="isMenuOpen = false"
-                data-interactive
-                >Про мене</a
-              >
-            </li>
-            <li class="tab:ml-2">
-              <button
-                class="w-72 h-10 tab:h-14 desk:h-16 uppercase flex items-center justify-center btn-blur font-alumni font-bold text-lg cursor-pointer"
-                x-text="$t('header.contacts')"
-                @click="isMenuOpen = false; $store.modal.openContactModal()"
-                data-interactive
-              >
-                Контакти
-              </button>
-            </li>
-          </ul>
-        </div>
-      </header>
-
-      <!-- title -->
-      <div
-        x-ref="title"
-        x-data="heroTitle"
-        x-show="$store.title.isTitleShown"
-        x-cloak
-        x-effect="isTitleTriggered = show; calcHeroCardOffset()"
-        class="p-0 absolute z-[3] min-w-1 leading-tight text-[4rem]"
-        :style="styles"
-        @transitionend="$store.title.isTitleShown = false"
-      >
-        <p
-          x-text="$t('hero.title')"
-          class="uppercase p-0 m-0 font-bold font-alumni text-white"
-        ></p>
-      </div>
-
-      <!-- card -->
-      <!-- inline style & x-effect - for preventing card from flickering
-     but still keeping it in the DOM -->
-      <div
-        style="opacity: 0"
-        id="heroCard"
-        x-ref="heroContainer"
-        x-effect="show ? $refs.heroContainer.style.opacity = '100%' : null"
-        class="transition-all ease-in duration-500 flex-col z-[2] absolute bottom-15 tab:bottom-10 pc:bottom-[8.5%] left-[calc((100%-288px)/2)] tab:left-6 pc:left-10 desk:left-16 w-72 tab:w-111 pc:w-150"
-      >
-        <p
-          x-cloak
-          x-show="!$store.title.isTitleShown "
-          x-text="$t('hero.title')"
-          class="uppercase p-0 m-0 font-bold font-alumni text-[2rem] tab:text-[3rem] pc:text-[4rem] desk:text-[5rem] leading-tight text-white text-nowrap"
-        ></p>
-        <p
-          x-text="$t('hero.description')"
-          class="tab:w-4/5 pc:w-auto mb-8 tab:mb-14 desk:mb-15 pc:leading-8 text-base tab:text-xl pc:text-2xl desk:text-2xl-plus"
-        ></p>
-
-        <div class="flex flex-col pc:flex-row gap-4 tab:gap-6">
           <button
-            class="barrel-animation cursor-pointer w-72 h-10 tab:h-14 desk:h-16 bg-dark font-alumni font-bold text-lg tab:text-2xl desk:text-2xl-plus"
+            class="tracking-wider uppercase pc:hidden flex h-6 px-2 my-auto hover:cursor-pointer text-lg"
+            @click="$locale($locale() === 'ua' ? 'eng' : 'ua')"
+            :aria-label="$locale() === 'ua' ? 'Switch to English' : 'Переключити на українську'"
+            data-interactive
+          >
+            <span
+              data-interactive
+              :class="$locale() === 'ua' ? 'text-white hover:underline' : 'text-white/60 hover:underline'"
+              >ua</span
+            >|<span
+              data-interactive
+              :class="$locale() === 'eng' ? 'text-white hover:underline' : 'text-white/60 hover:underline'"
+              >eng</span
+            >
+          </button>
+
+          <button
+            id="burgerMenu"
+            @click="isMenuOpen = true; $nextTick(() => $refs.closeNavButton.focus())"
+            @keydown.space="isKeyboardNavigationUsed = true"
+            @keydown.enter="isKeyboardNavigationUsed = true"
+            :aria-label="$locale() !== 'ua' ? 'open navigation menu' : 'відкрити навігаційне меню'"
+            x-show="!isMenuOpen"
+            x-ref="burger"
+            x-transition:enter="transition transform ease-in duration-500"
+            x-transition:enter-start="rotate-0 opacity-0"
+            x-transition:enter-end="rotate-360 opacity-100"
+            x-transition:leave="transition transform ease-out duration-500"
+            x-transition:leave-start="rotate-0 opacity-100"
+            x-transition:leave-end="-rotate-360 opacity-0"
+            class="my-auto rounded-full mr-[5px] pc:hidden cursor-pointer"
+            data-interactive
+          >
+            <img
+              data-interactive
+              src="/burger-button.svg"
+              alt="menu"
+              class="size-11"
+            />
+          </button>
+
+          <!-- mob menu -->
+          <div
+            id="mobileMenu"
+            @keydown.esc="$nextTick(()=> {if (isKeyboardNavigationUsed)$refs.burger.focus()}); isMenuOpen = false;"
+            x-cloak
+            x-trap="isMenuOpen"
+            x-show="isMenuOpen"
+            x-transition:enter="transition-opacity duration-500 ease-in-out"
+            x-transition:enter-start="opacity-0"
+            x-transition:enter-end="opacity-100"
+            x-transition:leave="transition-opacity duration-500 ease-in-out"
+            x-transition:leave-start="opacity-100"
+            x-transition:leave-end="opacity-0"
+            class="pc:hidden flex flex-col w-[100dvw] h-[100dvh] bg-dark fixed z-10 top-0 right-0"
+            data-interactive
+          >
+            <header
+              id="mobMenuHeader"
+              class="flex flex-row justify-between w-full h-20 pc:h-25 px-4 tab:px-6 pc:px-10 desk:px-15 uppercase"
+            >
+              <button
+                class="cursor-pointer my-auto"
+                aria-label="close menu"
+                @click="isMenuOpen = false"
+                data-interactive
+              >
+                <img
+                  id="logo"
+                  class="size-11 tab:size-16 pc:size-20"
+                  src="/logo.svg"
+                  alt="logo"
+                  data-interactive
+                />
+              </button>
+
+              <button
+                class="tracking-wider uppercase pc:hidden flex h-6 px-2 my-auto hover:cursor-pointer text-lg"
+                @click="$locale($locale() === 'ua' ? 'eng' : 'ua')"
+                :aria-label="$locale() === 'ua' ? 'Switch to English' : 'Переключити на українську'"
+                data-interactive
+              >
+                <span
+                  data-interactive
+                  :class="$locale() === 'ua' ? 'text-white hover:underline' : 'text-white/60 hover:underline'"
+                  >ua</span
+                >|<span
+                  data-interactive
+                  :class="$locale() === 'eng' ? 'text-white hover:underline' : 'text-white/60 hover:underline'"
+                  >eng</span
+                >
+              </button>
+
+              <button
+                id="closeMenu"
+                x-ref="closeNavButton"
+                @click="isMenuOpen = false; $nextTick(() => $refs.burger.focus())"
+                :aria-label="$locale() !== 'ua' ? 'close navigation menu' : 'закрити навігаційне меню'"
+                x-show="isMenuOpen"
+                x-transition:enter="transition transform ease-in duration-500"
+                x-transition:enter-start="rotate-0 opacity-0"
+                x-transition:enter-end="rotate-360 opacity-100"
+                x-transition:leave="transition transform ease-out duration-500"
+                x-transition:leave-start="rotate-0 opacity-100"
+                x-transition:leave-end="-rotate-360 opacity-0"
+                class="block my-auto rounded-full mr-[5px] pc:hidden cursor-pointer"
+                data-interactive
+              >
+                <img
+                  data-interactive
+                  src="/close-button.svg"
+                  alt="menu"
+                  class="size-11"
+                />
+              </button>
+            </header>
+
+            <ul class="mx-auto mt-9 flex flex-col gap-5">
+              <li class="tab:ml-2">
+                <a
+                  class="w-72 h-10 tab:h-14 desk:h-16 flex items-center justify-center bg-dark font-alumni font-bold text-lg border border-transparent hover:border-light"
+                  href="#services"
+                  x-text="$t('header.services')"
+                  @click="isMenuOpen = false"
+                  data-interactive
+                  >Послуги</a
+                >
+              </li>
+              <li class="tab:ml-2">
+                <a
+                  class="w-72 h-10 tab:h-14 desk:h-16 flex items-center justify-center bg-dark font-alumni font-bold text-lg border border-transparent hover:border-light"
+                  href="#portfolio"
+                  x-text="$t('header.portfolio')"
+                  @click="isMenuOpen = false"
+                  data-interactive
+                  >Портфоліо</a
+                >
+              </li>
+              <li class="tab:ml-2">
+                <a
+                  class="w-72 h-10 tab:h-14 desk:h-16 flex items-center justify-center bg-dark font-alumni font-bold text-lg border border-transparent hover:border-light"
+                  href="#about"
+                  x-text="$t('header.aboutMe')"
+                  @click="isMenuOpen = false"
+                  data-interactive
+                  >Про мене</a
+                >
+              </li>
+              <li class="tab:ml-2">
+                <button
+                  class="w-72 h-10 tab:h-14 desk:h-16 uppercase flex items-center justify-center btn-blur font-alumni font-bold text-lg cursor-pointer"
+                  x-text="$t('header.contacts')"
+                  @click="isMenuOpen = false; $store.modal.openContactModal()"
+                  data-interactive
+                >
+                  Контакти
+                </button>
+              </li>
+            </ul>
+          </div>
+        </header>
+
+        <!-- title -->
+        <div
+          x-ref="title"
+          x-data="heroTitle"
+          x-show="$store.title.isTitleShown"
+          x-cloak
+          x-effect="isTitleTriggered = show; calcHeroCardOffset()"
+          class="p-0 absolute z-[3] min-w-1 leading-tight text-[4rem]"
+          :style="styles"
+          @transitionend="$store.title.isTitleShown = false"
+        >
+          <p
+            x-text="$t('hero.title')"
+            class="uppercase p-0 m-0 font-bold font-alumni text-white"
+          ></p>
+        </div>
+
+        <!-- card -->
+        <!-- inline style & x-effect - for preventing card from flickering
+     but still keeping it in the DOM -->
+        <div
+          style="opacity: 0"
+          id="heroCard"
+          x-ref="heroContainer"
+          x-effect="show ? $refs.heroContainer.style.opacity = '100%' : null"
+          class="transition-all ease-in duration-500 flex-col z-[2] absolute bottom-15 tab:bottom-10 pc:bottom-[8.5%] left-[calc((100%-288px)/2)] tab:left-6 pc:left-10 desk:left-16 w-72 tab:w-111 pc:w-150"
+        >
+          <p
+            x-cloak
+            x-show="!$store.title.isTitleShown "
+            x-text="$t('hero.title')"
+            class="uppercase p-0 m-0 font-bold font-alumni text-[2rem] tab:text-[3rem] pc:text-[4rem] desk:text-[5rem] leading-tight text-white text-nowrap"
+          ></p>
+          <p
+            x-text="$t('hero.description')"
+            class="tab:w-4/5 pc:w-auto mb-8 tab:mb-14 desk:mb-15 pc:leading-8 text-base tab:text-xl pc:text-2xl desk:text-2xl-plus"
+          ></p>
+
+          <div class="flex flex-col pc:flex-row gap-4 tab:gap-6">
+            <button
+              class="barrel-animation cursor-pointer w-72 h-10 tab:h-14 desk:h-16 bg-dark font-alumni font-bold text-lg tab:text-2xl desk:text-2xl-plus"
+              x-text="$t('hero.order')"
+              @click="$store.modal.openContactModal()"
+              data-interactive
+            >
+              Замовити монтаж
+            </button>
+            <button
+              class="barrel-animation w-72 h-10 tab:h-14 desk:h-16 cursor-pointer btn-blur font-alumni font-bold text-lg tab:text-2xl desk:text-2xl-plus"
+              @click="window.location.href = '#portfolio'"
+              x-text="$t('hero.portfolio')"
+              data-interactive
+            >
+              Дивитись роботи
+            </button>
+          </div>
+        </div>
+
+        <!-- play/pause button -->
+        <button
+          :aria-label="isPaused ? $t('hero.playButtonLabel') : $t('hero.pauseButtonLabel')"
+          x-transition
+          class="rounded-full btn-blur cursor-pointer size-14 tab:size-25 pc:size-35 desk:size-45.5 absolute z-[1] top-23 right-2.5 tab:top-auto tab:bottom-7 tab:right-6 pc:bottom-[8.5%] pc:right-11 desk:bottom-23 desk:right-14"
+        >
+          <img
+            x-show="isPaused"
+            x-transition
+            src="play.svg"
+            class="size-4 tab:size-8.5 pc:size-10 desk:size-13 m-auto"
+          />
+          <img
+            x-show="!isPaused"
+            x-transition
+            src="pause.svg"
+            class="size-4 tab:size-8.5 pc:size-10 desk:size-13 m-auto"
+          />
+        </button>
+      </section>
+
+      <!-- motivation -->
+      <section id="motivationSecion" class="overflow-hidden w-screen">
+        <div x-data class="mt-15 mx-3 tab:mt-20 tab:mx-6 flex justify-between">
+          <h1
+            class="font-alumni font-bold w-full tab:w-96 pc:w-162 leading-none text-center tab:text-left text-[32px] tab:text-[48px] pc:text-[64px]"
+            x-text="$t('motivationSection.title')"
+          ></h1>
+
+          <button
+            class="hidden tab:block barrel-animation cursor-pointer w-72 h-10 tab:h-14 desk:h-16 bg-dark font-alumni font-bold text-white text-lg tab:text-2xl desk:text-2xl-plus"
             x-text="$t('hero.order')"
             @click="$store.modal.openContactModal()"
             data-interactive
           >
             Замовити монтаж
           </button>
+        </div>
+        <div
+          x-data="{ cards: [...$t('motivationSection.args')] }"
+          x-effect="cards = [...$t('motivationSection.args')]; $locale"
+          class="grid pc:hidden gap-6 mt-10 mb-14 tab:mb-20 mx-6 grid-cols-1 tab:grid-cols-2"
+        >
+          <template x-for="(item, index) in cards" :key="index+'bk'">
+            <x-component
+              url="/templates/motivationCard.html"
+              :x-data="{ item, index }"
+              :id="item"
+              class="relative max-w-130 mx-auto overflow-hidden"
+            ></x-component>
+          </template>
           <button
-            class="barrel-animation w-72 h-10 tab:h-14 desk:h-16 cursor-pointer btn-blur font-alumni font-bold text-lg tab:text-2xl desk:text-2xl-plus"
-            @click="window.location.href = '#portfolio'"
-            x-text="$t('hero.portfolio')"
+            class="mx-auto mt-4 tab:hidden barrel-animation cursor-pointer w-full max-w-72 h-10 bg-dark font-alumni font-bold text-white"
+            x-text="$t('hero.order')"
+            @click="$store.modal.openContactModal()"
             data-interactive
           >
-            Дивитись роботи
+            Замовити монтаж
           </button>
         </div>
-      </div>
 
-      <!-- play/pause button -->
-      <button
-        :aria-label="isPaused ? $t('hero.playButtonLabel') : $t('hero.pauseButtonLabel')"
-        x-transition
-        class="rounded-full btn-blur cursor-pointer size-14 tab:size-25 pc:size-35 desk:size-45.5 absolute z-[1] top-23 right-2.5 tab:top-auto tab:bottom-7 tab:right-6 pc:bottom-[8.5%] pc:right-11 desk:bottom-23 desk:right-14"
-      >
-        <img
-          x-show="isPaused"
-          x-transition
-          src="play.svg"
-          class="size-4 tab:size-8.5 pc:size-10 desk:size-13 m-auto"
-        />
-        <img
-          x-show="!isPaused"
-          x-transition
-          src="pause.svg"
-          class="size-4 tab:size-8.5 pc:size-10 desk:size-13 m-auto"
-        />
-      </button>
-    </section>
+        <div
+          id="carousel"
+          class="hidden pc:flex w-fit mt-10 mb-30 gap-10"
+          x-data="{ cards: [...$t('motivationSection.args')] }"
+          x-effect="cards = [...$t('motivationSection.args')]; $locale"
+        >
+          <div id="dummy" class="w-[50dvw]"></div>
 
-    <main>
+          <template x-for="(item, index) in cards" :key="index">
+            <x-component
+              url="/templates/motivationCard.html"
+              :x-data="{ item, index }"
+              :id="item"
+              class="relative w-130 carousel-card select-none cursor-grab active:cursor-grabbing"
+            ></x-component>
+          </template>
+        </div>
+      </section>
+
+      <section class="w-full h-10 bg-slate-500">
+        <h1 class="font-alumni font-bold text-white">
+          Тут буде ще одна секція. Додано для наглядності відступів
+        </h1>
+      </section>
+
       <!-- FAQ -->
       <section
+        id="faqSection"
         class="flex flex-col w-screen px-4 tab:px-6 pc:px-10 desk:px-16 pt-15 tab:pt-20 pc:pt-25 desk:pt-30"
       >
         <!-- head -->
@@ -887,23 +954,6 @@
           </div>
         </div>
       </section>
-
-      <!-- Dynamic sections -->
-      <div
-        x-data="{cards: [
-        {id: 'services'},
-        {id: 'portfolio'},
-        {id: 'about'}
-        ]}"
-      >
-        <template x-for="card in cards">
-          <x-component
-            url="/src/templates/card.html"
-            x-data="{ item: card }"
-            :id="card.id"
-          ></x-component>
-        </template>
-      </div>
     </main>
 
     <!-- Contact modal -->

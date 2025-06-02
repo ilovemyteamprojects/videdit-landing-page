@@ -44,6 +44,27 @@ export const messages = {
                 question: 'Чи входить написання сценарію у вартість?',
                 answer: 'Це залежить від обраного пакета. У стандартному пакеті сценарій не включено,</br>але ми із задоволенням надамо цю послугу як додаткову за окрему оплату.'
             }
+        },
+        motivationSection: {
+            title: "Чому варто обирати професійний монтаж?",
+            args: [
+                {
+                    sub: 'Відео, яке продає',
+                    text: "Рекламні ролики, презентації, відгуки — щоб клієнт зрозумів і захотів саме ваш продукт."
+                },
+                {
+                    sub: 'Відео, що зберігає емоції',
+                    text: "Зберігайте моменти з весіль, свят і сімейних зустрічей у форматі, до якого хочеться повертатись."
+                },
+                {
+                    sub: 'Контент, який дивляться до кінця',
+                    text: "Короткі динамічні кліпи (Reels, Shorts, TikTok), які набирають перегляди і підвищують впізнаваність."
+                },
+                {
+                    sub: 'Стильне відео — сильне позиціонування',
+                    text: "Показуйте себе як професіонала або бренд через естетику, зміст і монтаж, що захоплює."
+                },
+            ]
         }
     },
     eng: {
@@ -90,6 +111,28 @@ export const messages = {
                 question: 'Can I choose the music for my video?',
                 answer: 'Absolutely! You can either provide your own track or choose from our licensed music library.</br>We will assist in selecting the perfect soundtrack to match the mood and style of your video.'
             }
+        },
+        motivationSection: {
+            title: "Why choose professional editing?",
+            args: [
+                {
+                    "sub": "Video that sells",
+                    "text": "Commercials, presentations, testimonials — to help the client understand and want *your* product."
+                },
+                {
+                    "sub": "Video that captures emotion",
+                    "text": "Preserve moments from weddings, celebrations, and family gatherings in a format you'll want to revisit."
+                },
+                {
+                    "sub": "Content people watch till the end",
+                    "text": "Short, dynamic clips (Reels, Shorts, TikTok) that get views and boost recognition."
+                },
+                {
+                    "sub": "Stylish video — strong positioning",
+                    "text": "Present yourself as a professional or a brand through aesthetics, meaning, and captivating editing."
+                }
+            ]
+
         }
 
 
