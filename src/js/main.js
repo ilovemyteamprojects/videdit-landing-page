@@ -93,7 +93,6 @@ function setupBarrelAnimation() {
             };
 
             el.addEventListener("mouseenter", animate);
-            el.addEventListener("focus", animate);
         }, 10);
     });
 }

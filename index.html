@@ -108,7 +108,7 @@
             </button>
             <button
               id="contactsButton"
-              class="barrel-animation h-10 w-22 bg-dark my-auto uppercase text-white text-lg font-bold font-alumni hover:cursor-pointer"
+              class="barrel-animation h-10 w-22 bg-dark focus:bg-darker my-auto uppercase text-white text-lg font-bold font-alumni hover:cursor-pointer"
               x-text="$t('header.contacts')"
               @click="$store.modal.openContactModal()"
               data-interactive
@@ -236,7 +236,7 @@
             </header>
 
             <ul class="mx-auto mt-9 flex flex-col gap-5">
-              <li class="tab:ml-2">
+              <li class="tab:ml-2 focus:bg-darker barrel-animation">
                 <a
                   class="w-72 h-10 tab:h-14 desk:h-16 flex items-center justify-center bg-dark font-alumni font-bold text-lg border border-transparent hover:border-light"
                   href="#services"
@@ -246,7 +246,7 @@
                   >Послуги</a
                 >
               </li>
-              <li class="tab:ml-2">
+              <li class="tab:ml-2 focus:bg-darker barrel-animation">
                 <a
                   class="w-72 h-10 tab:h-14 desk:h-16 flex items-center justify-center bg-dark font-alumni font-bold text-lg border border-transparent hover:border-light"
                   href="#portfolio"
@@ -256,7 +256,7 @@
                   >Портфоліо</a
                 >
               </li>
-              <li class="tab:ml-2">
+              <li class="tab:ml-2 focus:bg-darker barrel-animation">
                 <a
                   class="w-72 h-10 tab:h-14 desk:h-16 flex items-center justify-center bg-dark font-alumni font-bold text-lg border border-transparent hover:border-light"
                   href="#about"
@@ -266,7 +266,7 @@
                   >Про мене</a
                 >
               </li>
-              <li class="tab:ml-2">
+              <li class="tab:ml-2 focus:bg-darker barrel-animation">
                 <button
                   class="w-72 h-10 tab:h-14 desk:h-16 uppercase flex items-center justify-center btn-blur font-alumni font-bold text-lg cursor-pointer"
                   x-text="$t('header.contacts')"
@@ -320,7 +320,7 @@
 
           <div class="flex flex-col pc:flex-row gap-4 tab:gap-6">
             <button
-              class="barrel-animation cursor-pointer w-72 h-10 tab:h-14 desk:h-16 bg-dark font-alumni font-bold text-lg tab:text-2xl desk:text-2xl-plus"
+              class="focus:bg-darker barrel-animation cursor-pointer w-72 h-10 tab:h-14 desk:h-16 bg-dark font-alumni font-bold text-lg tab:text-2xl desk:text-2xl-plus"
               x-text="$t('hero.order')"
               @click="$store.modal.openContactModal()"
               data-interactive
@@ -390,7 +390,7 @@
             ></x-component>
           </template>
           <button
-            class="mx-auto mt-4 tab:hidden barrel-animation cursor-pointer w-full max-w-72 h-10 bg-dark font-alumni font-bold text-white"
+            class="mx-auto mt-4 tab:hidden focus:bg-darker barrel-animation cursor-pointer w-full max-w-72 h-10 bg-dark font-alumni font-bold text-white"
             x-text="$t('hero.order')"
             @click="$store.modal.openContactModal()"
             data-interactive
@@ -698,50 +698,14 @@
         <!-- questions non-mob-->
         <ul
           x-data="faqSection"
-          class="hidden tab:grid gap-2 grid-cols-[repeat(auto-fit,minmax(218px,1fr))] desk:grid-cols-[repeat(auto-fit,minmax(250px,1fr))]"
+          class="hidden tab:grid gap-2 grid-cols-3 pc:grid-cols-5"
         >
-          <!-- selected question -->
-          <li
-            class="bg-notWhite p-4 aspect-square col-span-2 row-span-2"
-            x-show="activeItem"
-            x-cloak
-          >
-            <button
-              class="float-right size-12.5 cursor-pointer rotate-180"
-              :aria-label="$t('aria.closeAnswer')"
-              x-ref="closeFaqButton"
-              @click="activeItem = null"
-            >
-              <svg
-                aria-hidden="true"
-                viewBox="0 0 50 50"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fill-rule="evenodd"
-                  clip-rule="evenodd"
-                  d="M15.5107 13.0476L34.6074 12.9537C35.8469 12.9322 36.8691 13.9196 36.8906 15.1591L36.9846 34.3929C35.4885 34.4188 36.1543 34.419 34.9149 34.4405C33.6754 34.462 34.7403 34.4318 32.4961 34.4707L32.4961 20.655L15.5886 38.1593L12.3597 35.0405L29.2672 17.5362L15.5886 17.5361C15.5626 16.04 15.5707 16.5313 15.5492 15.2919C15.5277 14.0524 15.5233 13.7957 15.5107 13.0476Z"
-                  fill="black"
-                />
-              </svg>
-            </button>
-
-            <h3
-              x-html="headerTitle"
-              class="text-xl desk:text-2xl font-bold leading-[130%]"
-            ></h3>
-            <p x-html="headerText" class="mt-3 text-lg desk:text-xl"></p>
-          </li>
-
-          <!-- all questions -->
-          <li x-show="activeItem !== 1" x-cloak class="aspect-square bg-black">
+          <li class="aspect-square bg-black">
             <img src="faq/1.jpg" />
           </li>
           <li
-            class="aspect-square flex flex-col justify-between border border-darker p-3 font-bold text-xl desk:text-2xl leading-[130%] cursor-pointer"
-            x-show="activeItem !== 1"
-            :aria-hidden="activeItem"
+            x-ref="cell"
+            class="aspect-square relative flex flex-col justify-between border border-darker p-3 font-bold text-xl desk:text-2xl leading-[130%] cursor-pointer"
             x-cloak
             @click="activate(1)"
           >
@@ -764,16 +728,49 @@
                 />
               </svg>
             </button>
+            <!-- widened item 1 -->
+            <div
+              class="absolute z-10 bg-backup border border-darker top-0 left-0 p-4 aspect-square"
+              :style="{width}"
+              x-show="activeItem === 1"
+              x-transition
+              x-cloak
+            >
+              <button
+                class="float-right size-12.5 cursor-pointer rotate-180"
+                :aria-label="$t('aria.closeAnswer')"
+              >
+                <svg
+                  aria-hidden="true"
+                  viewBox="0 0 50 50"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M15.5107 13.0476L34.6074 12.9537C35.8469 12.9322 36.8691 13.9196 36.8906 15.1591L36.9846 34.3929C35.4885 34.4188 36.1543 34.419 34.9149 34.4405C33.6754 34.462 34.7403 34.4318 32.4961 34.4707L32.4961 20.655L15.5886 38.1593L12.3597 35.0405L29.2672 17.5362L15.5886 17.5361C15.5626 16.04 15.5707 16.5313 15.5492 15.2919C15.5277 14.0524 15.5233 13.7957 15.5107 13.0476Z"
+                    fill="black"
+                  />
+                </svg>
+              </button>
+
+              <h3
+                x-html="$t('faqSection.q1.question')"
+                class="text-xl desk:text-2xl font-bold leading-[130%]"
+              ></h3>
+              <p
+                x-html="$t('faqSection.q1.answer')"
+                class="mt-3 text-lg desk:text-xl"
+              ></p>
+            </div>
           </li>
 
-          <li x-show="activeItem !== 2" x-cloak class="aspect-square bg-black">
+          <li class="aspect-square bg-black">
             <img src="faq/2.jpg" />
           </li>
           <li
-            class="aspect-square flex flex-col justify-between border border-darker p-3 font-bold text-xl desk:text-2xl leading-[130%] cursor-pointer"
-            x-show="activeItem !== 2"
-            :aria-hidden="activeItem"
-            x-cloak
+            class="relative aspect-square flex flex-col justify-between border border-darker p-3 font-bold text-xl desk:text-2xl leading-[130%] cursor-pointer"
             @click="activate(2)"
           >
             <p :id="'faq-question-2'" x-html="$t('faqSection.q2.question')"></p>
@@ -795,16 +792,49 @@
                 />
               </svg>
             </button>
+            <!-- widened item 2 -->
+            <div
+              class="absolute z-10 bg-backup border border-darker top-0 left-0 p-4 aspect-square"
+              :style="{width}"
+              x-show="activeItem === 2"
+              x-transition
+              x-cloak
+            >
+              <button
+                class="float-right size-12.5 cursor-pointer rotate-180"
+                :aria-label="$t('aria.closeAnswer')"
+              >
+                <svg
+                  aria-hidden="true"
+                  viewBox="0 0 50 50"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M15.5107 13.0476L34.6074 12.9537C35.8469 12.9322 36.8691 13.9196 36.8906 15.1591L36.9846 34.3929C35.4885 34.4188 36.1543 34.419 34.9149 34.4405C33.6754 34.462 34.7403 34.4318 32.4961 34.4707L32.4961 20.655L15.5886 38.1593L12.3597 35.0405L29.2672 17.5362L15.5886 17.5361C15.5626 16.04 15.5707 16.5313 15.5492 15.2919C15.5277 14.0524 15.5233 13.7957 15.5107 13.0476Z"
+                    fill="black"
+                  />
+                </svg>
+              </button>
+
+              <h3
+                x-html="$t('faqSection.q2.question')"
+                class="text-xl desk:text-2xl font-bold leading-[130%]"
+              ></h3>
+              <p
+                x-html="$t('faqSection.q2.answer')"
+                class="mt-3 text-lg desk:text-xl"
+              ></p>
+            </div>
           </li>
 
-          <li x-show="activeItem !== 3" x-cloak class="aspect-square bg-black">
+          <li class="aspect-square bg-black">
             <img src="faq/3.jpg" />
           </li>
           <li
-            class="aspect-square flex flex-col justify-between border border-darker p-3 font-bold text-xl desk:text-2xl leading-[130%] cursor-pointer"
-            x-show="activeItem !== 3"
-            :aria-hidden="activeItem"
-            x-cloak
+            class="relative aspect-square flex flex-col justify-between border border-darker p-3 font-bold text-xl desk:text-2xl leading-[130%] cursor-pointer"
             @click="activate(3)"
           >
             <p :id="'faq-question-3'" x-html="$t('faqSection.q3.question')"></p>
@@ -826,16 +856,49 @@
                 />
               </svg>
             </button>
+            <!-- widened item 3 -->
+            <div
+              class="absolute z-10 bg-backup border border-darker top-0 right-0 pc:top-auto pc:bottom-0 pc:right-auto pc:left-0 p-4 aspect-square"
+              :style="{width}"
+              x-show="activeItem === 3"
+              x-transition
+              x-cloak
+            >
+              <button
+                class="float-right size-12.5 cursor-pointer rotate-180"
+                :aria-label="$t('aria.closeAnswer')"
+              >
+                <svg
+                  aria-hidden="true"
+                  viewBox="0 0 50 50"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M15.5107 13.0476L34.6074 12.9537C35.8469 12.9322 36.8691 13.9196 36.8906 15.1591L36.9846 34.3929C35.4885 34.4188 36.1543 34.419 34.9149 34.4405C33.6754 34.462 34.7403 34.4318 32.4961 34.4707L32.4961 20.655L15.5886 38.1593L12.3597 35.0405L29.2672 17.5362L15.5886 17.5361C15.5626 16.04 15.5707 16.5313 15.5492 15.2919C15.5277 14.0524 15.5233 13.7957 15.5107 13.0476Z"
+                    fill="black"
+                  />
+                </svg>
+              </button>
+
+              <h3
+                x-html="$t('faqSection.q3.question')"
+                class="text-xl desk:text-2xl font-bold leading-[130%]"
+              ></h3>
+              <p
+                x-html="$t('faqSection.q3.answer')"
+                class="mt-3 text-lg desk:text-xl"
+              ></p>
+            </div>
           </li>
 
-          <li x-show="activeItem !== 4" x-cloak class="aspect-square bg-black">
+          <li class="aspect-square bg-black">
             <img src="faq/4.jpg" />
           </li>
           <li
-            class="aspect-square flex flex-col justify-between border border-darker p-3 font-bold text-xl desk:text-2xl leading-[130%] cursor-pointer"
-            x-show="activeItem !== 4"
-            :aria-hidden="activeItem"
-            x-cloak
+            class="relative aspect-square flex flex-col justify-between border border-darker p-3 font-bold text-xl desk:text-2xl leading-[130%] cursor-pointer"
             @click="activate(4)"
           >
             <p :id="'faq-question-4'" x-html="$t('faqSection.q4.question')"></p>
@@ -857,16 +920,49 @@
                 />
               </svg>
             </button>
+            <!-- widened item 4 -->
+            <div
+              class="absolute z-10 bg-backup border border-darker bottom-0 left-0 p-4 aspect-square"
+              :style="{width}"
+              x-show="activeItem === 4"
+              x-transition
+              x-cloak
+            >
+              <button
+                class="float-right size-12.5 cursor-pointer rotate-180"
+                :aria-label="$t('aria.closeAnswer')"
+              >
+                <svg
+                  aria-hidden="true"
+                  viewBox="0 0 50 50"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M15.5107 13.0476L34.6074 12.9537C35.8469 12.9322 36.8691 13.9196 36.8906 15.1591L36.9846 34.3929C35.4885 34.4188 36.1543 34.419 34.9149 34.4405C33.6754 34.462 34.7403 34.4318 32.4961 34.4707L32.4961 20.655L15.5886 38.1593L12.3597 35.0405L29.2672 17.5362L15.5886 17.5361C15.5626 16.04 15.5707 16.5313 15.5492 15.2919C15.5277 14.0524 15.5233 13.7957 15.5107 13.0476Z"
+                    fill="black"
+                  />
+                </svg>
+              </button>
+
+              <h3
+                x-html="$t('faqSection.q4.question')"
+                class="text-xl desk:text-2xl font-bold leading-[130%]"
+              ></h3>
+              <p
+                x-html="$t('faqSection.q4.answer')"
+                class="mt-3 text-lg desk:text-xl"
+              ></p>
+            </div>
           </li>
 
-          <li x-show="activeItem !== 5" x-cloak class="aspect-square bg-black">
+          <li class="aspect-square bg-black">
             <img src="faq/5.jpg" />
           </li>
           <li
-            class="aspect-square flex flex-col justify-between border border-darker p-3 font-bold text-xl desk:text-2xl leading-[130%] cursor-pointer"
-            x-show="activeItem !== 5"
-            :aria-hidden="activeItem"
-            x-cloak
+            class="relative aspect-square flex flex-col justify-between border border-darker p-3 font-bold text-xl desk:text-2xl leading-[130%] cursor-pointer"
             @click="activate(5)"
           >
             <p :id="'faq-question-5'" x-html="$t('faqSection.q5.question')"></p>
@@ -888,6 +984,42 @@
                 />
               </svg>
             </button>
+            <!-- widened item 5 -->
+            <div
+              class="absolute z-10 bg-backup border border-darker bottom-0 left-0 pc:left-auto pc:right-0 p-4 aspect-square"
+              :style="{width}"
+              x-show="activeItem === 5"
+              x-transition
+              x-cloak
+            >
+              <button
+                class="float-right size-12.5 cursor-pointer rotate-180"
+                :aria-label="$t('aria.closeAnswer')"
+              >
+                <svg
+                  aria-hidden="true"
+                  viewBox="0 0 50 50"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M15.5107 13.0476L34.6074 12.9537C35.8469 12.9322 36.8691 13.9196 36.8906 15.1591L36.9846 34.3929C35.4885 34.4188 36.1543 34.419 34.9149 34.4405C33.6754 34.462 34.7403 34.4318 32.4961 34.4707L32.4961 20.655L15.5886 38.1593L12.3597 35.0405L29.2672 17.5362L15.5886 17.5361C15.5626 16.04 15.5707 16.5313 15.5492 15.2919C15.5277 14.0524 15.5233 13.7957 15.5107 13.0476Z"
+                    fill="black"
+                  />
+                </svg>
+              </button>
+
+              <h3
+                x-html="$t('faqSection.q5.question')"
+                class="text-xl desk:text-2xl font-bold leading-[130%]"
+              ></h3>
+              <p
+                x-html="$t('faqSection.q5.answer')"
+                class="mt-3 text-lg desk:text-xl"
+              ></p>
+            </div>
           </li>
         </ul>
       </section>
@@ -1020,7 +1152,7 @@
             >
               <li class="">
                 <a
-                  class="flex items-center justify-center w-72 tab:w-98 pc:w-104 h-10 tab:h-14 pc:h-16 mx-auto bg-dark font-bold text-lg tab:text-2xl desk:text-2xl-plus"
+                  class="flex items-center justify-center w-72 tab:w-98 pc:w-104 h-10 tab:h-14 pc:h-16 mx-auto focus:bg-darker barrel-animation bg-dark font-bold text-lg tab:text-2xl desk:text-2xl-plus"
                   href="https://www.facebook.com/"
                   target="_blank"
                   data-interactive
@@ -1038,7 +1170,7 @@
               </li>
               <li class=" ">
                 <a
-                  class="flex items-center justify-center w-72 tab:w-98 pc:w-104 h-10 tab:h-14 pc:h-16 mx-auto bg-dark font-bold text-lg tab:text-2xl desk:text-2xl-plus"
+                  class="flex items-center justify-center w-72 tab:w-98 pc:w-104 h-10 tab:h-14 pc:h-16 mx-auto bg-dark focus:bg-darker barrel-animation font-bold text-lg tab:text-2xl desk:text-2xl-plus"
                   href="https://www.t.me/"
                   target="_blank"
                   data-interactive
@@ -1056,7 +1188,7 @@
               </li>
               <li class=" ">
                 <a
-                  class="flex items-center justify-center w-72 tab:w-98 pc:w-104 h-10 tab:h-14 pc:h-16 mx-auto bg-dark font-bold text-lg tab:text-2xl desk:text-2xl-plus"
+                  class="flex items-center justify-center w-72 tab:w-98 pc:w-104 h-10 tab:h-14 pc:h-16 mx-auto bg-dark focus:bg-darker barrel-animation font-bold text-lg tab:text-2xl desk:text-2xl-plus"
                   href="https://www.instagram.com/"
                   target="_blank"
                   data-interactive
@@ -1074,7 +1206,7 @@
               </li>
               <li class=" ">
                 <a
-                  class="flex items-center justify-center w-72 tab:w-98 pc:w-104 h-10 tab:h-14 pc:h-16 mx-auto bg-dark font-bold text-lg tab:text-2xl desk:text-2xl-plus"
+                  class="flex items-center justify-center w-72 tab:w-98 pc:w-104 h-10 tab:h-14 pc:h-16 mx-auto bg-dark focus:bg-darker barrel-animation font-bold text-lg tab:text-2xl desk:text-2xl-plus"
                   href="https://www.gmail.com/"
                   target="_blank"
                   data-interactive
