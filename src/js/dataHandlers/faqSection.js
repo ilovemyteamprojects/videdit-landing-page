@@ -1,7 +1,7 @@
 export default function faqSectionData() {
     return {
         activeItem: null,
-        width: "100px",
+        width: null,
 
         init() {
             const updateWidth = () => {
@@ -25,7 +25,8 @@ export default function faqSectionData() {
         activate(id) {
             this.activeItem = (this.activeItem === id ? null : id);
 
-            this.width = `${(this.$refs.cell.offsetWidth * 2) + 8}px`
-        },
+            const width = (this.$refs.cell.offsetWidth * 2) + 9
+            this.width = width + 'px'
+        }
     }
 }
