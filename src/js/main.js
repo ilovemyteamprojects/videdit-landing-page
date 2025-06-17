@@ -8,7 +8,7 @@ import heroSectionHandler from './dataHandlers/heroSection';
 import faqSectionHandler from './dataHandlers/faqSection';
 import gsap from 'gsap';
 import { SplitText } from 'gsap/SplitText';
-import "./gsap/observer.js"
+import "./gsap/motivation.js"
 
 
 // Alpine.js
