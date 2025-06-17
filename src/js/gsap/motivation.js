@@ -18,15 +18,14 @@ if (window.innerWidth > 1279) {
                 markers: true,
                 trigger: section,
                 start: "top" + margin,
-                scrub: 2,
+                end: "+=" + (window.innerHeight * 5),
+                scrub: true,
                 pin: section,
+                anticipatePin: true,
 
             },
-            ease: "power4",
             x: -(carousel.offsetWidth - cardWidth)
         });
-
-        ;
     })
 
 }

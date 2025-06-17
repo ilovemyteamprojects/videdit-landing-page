@@ -360,16 +360,12 @@
       </section>
 
       <!-- motivation -->
-      <section
-        id="motivationSection"
-        class="overflow-hidden bg-slate-300 w-screen"
-      >
+      <section id="motivationSection" class="overflow-hidden w-screen">
         <div x-data class="mt-15 mx-3 tab:mt-20 tab:mx-6 flex justify-between">
           <h1
             class="font-alumni font-bold w-full tab:w-96 pc:w-162 leading-none text-center tab:text-left text-[32px] tab:text-[48px] pc:text-[64px]"
             x-text="$t('motivationSection.title')"
           ></h1>
-          <p>boo</p>
 
           <button
             class="hidden tab:block barrel-animation cursor-pointer w-72 h-10 tab:h-14 desk:h-16 bg-dark font-alumni font-bold text-white text-lg tab:text-2xl desk:text-2xl-plus"
@@ -416,7 +412,7 @@
               url="/templates/motivationCard.html"
               :x-data="{ item, index }"
               :id="item"
-              class="relative bg-red-300 h-90 w-130 carousel-card select-none cursor-grab active:cursor-grabbing"
+              class="relative h-62.5 w-130 carousel-card select-none cursor-grab active:cursor-grabbing"
             ></x-component>
           </template>
         </div>
