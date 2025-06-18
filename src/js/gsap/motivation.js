@@ -24,7 +24,7 @@ if (window.innerWidth > 1279) {
                 anticipatePin: true,
 
             },
-            x: -(carousel.offsetWidth - cardWidth)
+            x: -(carousel.offsetWidth - window.innerWidth)
         });
     })
 
